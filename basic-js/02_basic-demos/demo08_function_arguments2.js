@@ -14,6 +14,6 @@ function avg(){
 }
 
 console.log('avg(10,20)',avg(10,20));
-console.log('avg(10,20,30,40)',avg(10,20,30));
+console.log('avg(10,20,30,40)',avg(10,20,30,40));
 console.log('avg(10)',avg(10));
 console.log('avg()',avg());
