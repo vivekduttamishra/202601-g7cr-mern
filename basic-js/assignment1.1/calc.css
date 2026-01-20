@@ -1,0 +1,23 @@
+
+button{
+    margin:5px;
+    width:80px;
+    height:40px;
+}
+
+.risky{
+    background-color:rgb(230, 83, 34);
+    color:black;
+}
+
+.textbox{
+    width:200px;
+    margin:5px;
+    height:40px;
+    font-size:16px;
+    margin:5px;
+}
+
+fieldset{
+    min-height:100px;
+}

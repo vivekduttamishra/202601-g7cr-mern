@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calc.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Calculator V1</h1>
+    <div>
+        <label for="number">Number</label>
+        <input 
+        onchange="handleAdd()"
+        class="textbox" type="text" id="number" placeholder="Enter a number" />
+        <button onclick="handleAdd()">Add</button>
+        <button>Clear</button>
+        <button onclick="handleReset()" class="risky">Reset</button>
+
+    </div>
+    <div>
+        <button>Sum</button>
+        <button>Average</button>
+        <button>Max</button>
+    </div>
+
+    <fieldset>
+        <legend>Numbers</legend>
+        <ul id="numbers">
+            
+        </ul>
+        <button>Refresh</button>
+    </fieldset>
+
+    
+    <fieldset>
+        
+        <legend>Console</legend>
+        
+        <div id="console">
+            
+        </div>
+    </fieldset>
+    <script src="calc.js"></script>
+</body>
+
+</html>

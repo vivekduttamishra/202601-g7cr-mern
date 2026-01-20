@@ -1,16 +1,10 @@
-
-
 function greet(name){
     return 'Hello '+name+'!';
 }
 
-
-function printGreet(name, times){
-
-    //ES5 way to default times
-    if(times===undefined)
-        times=1
-
+//ES2015 allows default argument for parameter
+function printGreet(name, times=1){
+    //if(times===undefined) times=1
     console.log('Greeting '+ name + ' for '+ times + ' times:');
     for(let i=0;i<times;i++){
         console.log(greet(name));
@@ -18,6 +12,6 @@ function printGreet(name, times){
     console.log('---')
 }
 
-printGreet('Alice', 3);
-printGreet('Bob', 2);
-printGreet('Sanjay');
+printGreet("Alice", 3);
+printGreet("Bob", 2);
+printGreet('Sanjay'); //-> printGreet('Sanjay', 1)
