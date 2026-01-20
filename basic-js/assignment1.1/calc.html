@@ -13,17 +13,17 @@
     <div>
         <label for="number">Number</label>
         <input 
-        onchange="handleAdd()"
+       
         class="textbox" type="text" id="number" placeholder="Enter a number" />
         <button onclick="handleAdd()">Add</button>
-        <button>Clear</button>
+        <button onclick="handleClear()">Clear</button>
         <button onclick="handleReset()" class="risky">Reset</button>
 
     </div>
     <div>
-        <button>Sum</button>
-        <button>Average</button>
-        <button>Max</button>
+        <button onclick="handleSum()">Sum</button>
+        <button onclick="handleAverage()">Average</button>
+        <button onclick="handleMax()">Max</button>
     </div>
 
     <fieldset>
@@ -31,7 +31,7 @@
         <ul id="numbers">
             
         </ul>
-        <button>Refresh</button>
+        <button onclick="handleRefresh()">Refresh</button>
     </fieldset>
 
     
