@@ -40,7 +40,8 @@ function createApplication(){
         },
         onMax(){
             const max=calculator.max();
-            console.append(`<p>Max is ${max}</p>`)
+            //console.innerHTML+=`<p>Max is ${max}</p>`
+            console.append(`Max is ${max}`)
         },
         onClear(){
           console.clear()

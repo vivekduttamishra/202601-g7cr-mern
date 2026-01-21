@@ -3,8 +3,8 @@ console.log('ui module loaded')
 
 const getUI= function(id, wrapperElement="p"){
     const element= document.getElementById(id);
-    const start =`<${wrapperElement}>`
-    const end = `</${wrapperElement}>`
+    const start =`<${wrapperElement}>` //<p>  or <li>
+    const end = `</${wrapperElement}>` //</p> or </li>
     return {
         append( value ){
             element.innerHTML+=`${start}${value}${end}`;
