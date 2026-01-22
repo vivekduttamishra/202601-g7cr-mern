@@ -1,0 +1,24 @@
+
+
+label{
+    display:block;
+}
+
+.book-table table{
+    width:100%;
+}
+
+.book-table table td{
+    border-bottom:1px solid gray;
+    padding:10px;
+}
+
+.book-table table thead{
+    background: black;
+    color:white;
+}
+
+
+.book-form fieldset{
+    width:100%;
+}

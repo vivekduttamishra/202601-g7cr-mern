@@ -8,16 +8,27 @@ function createApplication(){
     // const console= document.getElementById("console");
     // const numberList = document.getElementById("numbers");
 
-    const numberTextBox = getInput('number');
+    //const numberTextBox = getInput('number');
     const console= getUI('console')
     const numberList= getUI('numbers','li');
 
+    //const numberTextBox = document.getElementById('number');
+    const numberTextBox = getInput('number');
 
     return {
 
         onAddNumber: function(){
-            let number = numberTextBox.getNumber();
+            //let number = numberTextBox.getNumber();
             
+            // let number = numberTextBox.value;
+
+            // if(number.trim()==='')
+            //     return console.append('Invalid Value');
+
+            // number= Number(number);
+
+            const number= numberTextBox.getNumber();
+
             if(isNaN(number)){
                 //console.innerHTML+=`<p>Invalid Input</p>`;
                 console.append('Invalid Value');
