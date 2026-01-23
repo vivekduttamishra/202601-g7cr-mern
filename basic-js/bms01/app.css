@@ -22,3 +22,19 @@ label{
 .book-form fieldset{
     width:100%;
 }
+
+.primary{
+    background-color:lightgreen;
+    width:80px;
+    
+}
+
+.danger{
+    background-color:lightcoral;
+    width:80px;
+    
+}
+
+.risky{
+    color:rgb(226, 56, 56)
+}

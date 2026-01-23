@@ -22,30 +22,17 @@
                     </tr>
                 </thead>
                 <tbody id="books">
-                    <tr> 
-                        <td>The Great Gatsby</td>
-                        <td>F. Scott Fitzgerald</td>
-                        <td>$10.99</td>
-                        <td><button>Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1984</td>
-                        <td>George Orwell</td>
-                        <td>$8.99</td>
-                        <td> <button>Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>To Kill a Mockingbird</td>
-                        <td>Harper Lee</td>
-                        <td>$12.49</td>
-                        <td><button>Delete</button></td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
         <div class="book-form">
             <fieldset>
+                
                 <legend>Add New Book</legend>
+                
+                <label for="id">Id</label>
+                <input type="text" id="id" name="id" placeholder="authomatically generated" disabled>
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title">
                 <label for="author">Author</label> 
@@ -53,7 +40,10 @@
                 <label for="price">Price</label>
                 <input type="text" id="price" name="price">
                 <p/>
-                <button onclick="app.onAddBook()">Add Book</button> 
+                <button onclick="app.onSave()">Save</button> 
+                <button onclick="app.onClear()">Clear</button> 
+                <span id="error" class="risky">error</span>
+            
             </fieldset>
         </div>
     </div>

@@ -30,9 +30,7 @@ const getInput= function(id){
         getValue(){
             return this.element.value.trim();
         },
-        getRawValue(){
-            return this.element.value;
-        },
+       
         getNumber(){
             let value = this.element.value;
             if(value.trim()==='')
