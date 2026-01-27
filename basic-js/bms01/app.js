@@ -139,7 +139,7 @@ function testSearch() {
         console.log('-----')
     }
 
-    let books = bookManager.getAllBooks();
+    let books = bookManager.getAllBooks(); 
 
     showAllBooks(books, 'Original List')
 
