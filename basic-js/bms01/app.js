@@ -143,22 +143,34 @@ function testSearch() {
 
     showAllBooks(books, 'Original List')
 
-    function byAuthorVivek(book) {
-        return book.author.toLowerCase().includes('vivek')
+    function byAuthorVivek(book,authorName) {
+        return book.author.toLowerCase()
+                .includes(authorName.toLowerCase());
     }
 
-    let vivekBooks= books.searchAll(byAuthorVivek)
+    let vivekBooks= books.searchAll(byAuthorVivek, 'Vivek')
 
     showAllBooks(vivekBooks, 'Vivek Books')
 
-    function lowCostBook(book) {
+    function priceRange(book,min,max) {
 
-        return book.price < 100;
+        return book.price>=min && book.price < max;
     }
 
-    let lowCostBooks = books.searchAll(lowCostBook)
+    //let minRangeBooks = books.searchAll(priceRange,0,100)
+    let minRangeBooks = books.filter(priceRange,0,100)
+    showAllBooks(minRangeBooks, 'Mid Range Books')
+
+    function range(min,max){
+        function matcher(book){
+            return book.price>=min && book.price < max;
+        }
+        return matcher;
+    }
+
+    let lowRangeBooks=books.filter(range(100,200));
+    showAllBooks(lowRangeBooks, 'Low Range Books')
     
-    showAllBooks(lowCostBooks, 'Low Cost Books')
 
 };
 
