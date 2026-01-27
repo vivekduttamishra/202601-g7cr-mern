@@ -39,16 +39,20 @@ function BookUI() {
     }
 
     this.addBooks = function (bookList) {
-        this.clearTable();
-        for (const book of bookList) {
-            this.addBook(book);
-        }
+        // this.clearTable();
+        // for (const book of bookList) {
+        //     this.addBook(book);
+        // }
+    
+        tableBuilder('book-table', bookList, createBookRow)
     }
 
     this.updateBook = function (book) {
-        let row = document.getElementById(book.id);
-        if (row)
-            row.innerHTML = createBookRow(book);
+        // let row = document.getElementById(book.id);
+        // if (row)
+        //     row.innerHTML = createBookRow(book);
+
+        tableRowUpdater(book.id, book, createBookRow)
     };
 
     this.clearTable = function () {
@@ -120,3 +124,45 @@ function App() {
 }
 
 const app = new App();
+
+
+//test for search
+function testSearch(){
+    let bookManager=new BookManager(new BookInMemoryStore())
+    addSampleBooks(bookManager);
+
+    function showAllBooks(books, heading){
+        console.log(heading)
+        for(let book of books){
+            console.log(book.id,book.title,book.price, book.author)
+        }
+        console.log('-----')
+    }
+
+    let books=bookManager.getAllBooks();
+
+    showAllBooks(books,'Original List')
+
+    showAllBooks(bookManager.search('author','dinkar'),'Books by Vivek')
+
+    let result=search(books,b=>b.price>100 && b.price<300)
+    showAllBooks(result,'Books between 100-300')
+
+    let kBooks=search(books, b=> b.title.indexOf('K')===0)
+    showAllBooks(kBooks,"Book starting with K")
+
+    let numbers=[2,3,9,11,8,7,4]
+
+    let evens = search(numbers, n=>n%2===0)
+    console.log('evens',evens);
+    
+    let odds = numbers.searchAll(n=>n%2!==0)
+    console.log('odds',odds);
+
+    let titleSearch = bookManager.getAllBooks().searchAll(b=> b.title.toLowerCase().includes('of'))
+    showAllBooks(titleSearch, 'Title with "of"')
+
+
+};
+
+testSearch();

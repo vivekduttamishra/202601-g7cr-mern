@@ -20,6 +20,19 @@ const getWriter= function(id, wrapperElement="p"){
     }
 }
 
+function tableBuilder(tableId, items, rowBuilder){
+    let body = document.querySelector(`#${tableId} tbody`);
+    body.innerHTML=''
+    for(let item of items){
+        body.innerHTML+=rowBuilder(item)
+    }
+}
+
+function tableRowUpdater(rowId, item, rowBuilder){
+    var row = document.getElementById(rowId)
+    row.innerHTML=rowBuilder(item)
+}
+
 const getInput= function(id){
     
     return {
