@@ -43,7 +43,7 @@ function BookUI() {
         // for (const book of bookList) {
         //     this.addBook(book);
         // }
-    
+
         tableBuilder('book-table', bookList, createBookRow)
     }
 
@@ -75,7 +75,7 @@ function App() {
     //bookUI.clearTable();
     bookUI.addBooks(bookManager.getAllBooks());
 
-    let errorWriter= getWriter('error','strong')
+    let errorWriter = getWriter('error', 'strong')
     errorWriter.clear();
 
     this.onSave = function () {
@@ -95,7 +95,7 @@ function App() {
             console.error('Error adding book:', error);
             errorWriter.set(error);
             return;
-        }else{
+        } else {
             errorWriter.clear();
         }
 
@@ -127,41 +127,38 @@ const app = new App();
 
 
 //test for search
-function testSearch(){
-    let bookManager=new BookManager(new BookInMemoryStore())
+function testSearch() {
+    let bookManager = new BookManager(new BookInMemoryStore())
     addSampleBooks(bookManager);
 
-    function showAllBooks(books, heading){
+    function showAllBooks(books, heading) {
         console.log(heading)
-        for(let book of books){
-            console.log(book.id,book.title,book.price, book.author)
+        for (let book of books) {
+            console.log(book.id, book.title, book.price, book.author)
         }
         console.log('-----')
     }
 
-    let books=bookManager.getAllBooks();
+    let books = bookManager.getAllBooks();
 
-    showAllBooks(books,'Original List')
+    showAllBooks(books, 'Original List')
 
-    showAllBooks(bookManager.search('author','dinkar'),'Books by Vivek')
+    function byAuthorVivek(book) {
+        return book.author.toLowerCase().includes('vivek')
+    }
 
-    let result=search(books,b=>b.price>100 && b.price<300)
-    showAllBooks(result,'Books between 100-300')
+    let vivekBooks= books.searchAll(byAuthorVivek)
 
-    let kBooks=search(books, b=> b.title.indexOf('K')===0)
-    showAllBooks(kBooks,"Book starting with K")
+    showAllBooks(vivekBooks, 'Vivek Books')
 
-    let numbers=[2,3,9,11,8,7,4]
+    function lowCostBook(book) {
 
-    let evens = search(numbers, n=>n%2===0)
-    console.log('evens',evens);
+        return book.price < 100;
+    }
+
+    let lowCostBooks = books.searchAll(lowCostBook)
     
-    let odds = numbers.searchAll(n=>n%2!==0)
-    console.log('odds',odds);
-
-    let titleSearch = bookManager.getAllBooks().searchAll(b=> b.title.toLowerCase().includes('of'))
-    showAllBooks(titleSearch, 'Title with "of"')
-
+    showAllBooks(lowCostBooks, 'Low Cost Books')
 
 };
 

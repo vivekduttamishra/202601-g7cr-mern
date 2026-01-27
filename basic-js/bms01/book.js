@@ -83,6 +83,32 @@ BookManager.prototype.search=function(criteria, text){
 }
 
 
+BookManager.prototype.searchByAuthor=function(author){
+    let result=[]
+    for(let book of this.getAllBooks())
+        if(book.author.toLowerCase().equals(author.toLowerCase()))
+            result.push(book)
+
+    return result;
+}
+BookManager.prototype.searchByTitle=function(title){
+    let result=[]
+    for(let book of this.getAllBooks())
+        if(book.title.toLowerCase().equals(title.toLowerCase()))
+            result.push(book)
+
+    return result;
+}
+BookManager.prototype.searchByPriceRange=function(min,max){
+    let result=[]
+    for(let book of this.getAllBooks())
+        if(book.price>=min && book.price<max)
+            result.push(book)
+
+    return result;
+}
+
+
 
 function addSampleBooks(bookManager) {
     bookManager.addBook(new Book(null,'Rashmirathi', 'Ramdhari Singh Dinkar', 149));
