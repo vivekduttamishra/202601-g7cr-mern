@@ -21,12 +21,23 @@ const PrimeUtils=(function (){
             this.done=false;
         }
 
-        start(){
+        start(cb){
+            if(isNaN(this.min))
+               return cb(`Invalid min: ${this.min}`)
+            
+            if(isNaN(this.max))
+               return  cb(`Invalid max: ${this.max}`)
+
+            if(this.min>=this.max)
+               return cb(`invalid range ${this.min}-${this.max}`)
+
             for(let i=this.min;i<this.max;i++){
                 if(isPrime(i))
                     this.primes.push(i)
             }
-            return this.primes;
+            //return this.primes;
+
+            cb(null, this.primes)
         }
     }
 
