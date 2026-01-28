@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <h1>Prime Finder App</h1>
+    <fieldset>
+        <legend>Prime Finder</legend>
+
+        <div class="input-group">
+            <label for="min">Min</label>
+            <input type="text" id="min" placeholder="Minimum of Range">
+
+        </div>
+
+        <div class="input-group">
+            <label for="max">Max</label>
+            <input type="text" id="max" placeholder="Maximum of Range">
+        </div>
+        <button onclick="app.onCountPrime()">Count Primes</button>
+
+        <div id="wait">wait...</div>
+        <div special class="input-group">
+            <label for="result">Result</label>
+            <input type="text" id="result"  value="0" disabled>
+        </div>
+
+    </fieldset>
+
+    <script src="html-utils.js"></script>
+    <script src="prime.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

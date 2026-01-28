@@ -1,0 +1,38 @@
+fieldset{
+    padding:20px;
+}
+
+.input-group{
+    margin-bottom:20px;
+    font-size: 1.2em;
+}
+
+.input-group input{
+    font-size:1.2em;
+    border:0px;
+    border-bottom: 1px solid gray;
+}
+
+
+
+button{
+    width:150px;
+    font-size:20px;    
+}
+
+
+#wait{
+    color:maroon;
+    font-size:1.5em;
+    margin:10px;
+}
+
+[special], [sepcia] input{
+     margin-bottom:20px;
+    font-size: 1.5em;
+}
+
+#result{
+    background-color:white;
+    border:0px;
+}
