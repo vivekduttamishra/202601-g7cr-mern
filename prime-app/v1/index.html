@@ -20,9 +20,20 @@
 
             <div><label for="min">Min:</label><input type="text" id="min"></div>
             <div><label for="max">Max:</label><input type="text" id="max"></div>
-            <button id="add-task" class="btn btn-sm btn-primary" onClick="app.onFindPrime()">Find Primes</button>
+            <button id="add-task" 
+                    class="btn btn-sm btn-primary"
+                    onClick="app.onFindPrime()"
+                    >Find Primes</button>
             <div>
+                <h3>
+                    Result
+                    <span id="result"></span>
+
+                </h3>
+                
+                <img width="60" id="loading" src="loading.webp" alt="loading">
                 <span id="error" class="text-danger"></span>
+
             </div>
         </fieldset>
 
