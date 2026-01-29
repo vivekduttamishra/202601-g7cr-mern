@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="\node_modules\bootstrap\dist\css\bootstrap.min.css">
+
+
+</head>
+
+<body >
+    <h2>Prime Utils</h2>
+
+    <div class="container">
+        <fieldset>
+            <legend>Primes In Range</legend>
+    
+            <div><label for="min">Min:</label><input type="text" id="min"></div>
+            <div><label for="max">Max:</label><input type="text" id="max"></div>
+            <button id="add-task" class="btn btn-sm btn-primary">Find Primes</button>
+        </fieldset>
+    </div>
+
+
+    <div class="container">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Min</th>
+                    <th>Max</th>
+                    <th>Primes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>500000</td>
+                    <td>cancelled</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>100</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>200000</td>
+                    <td><button class="btn btn-sm btn-danger">cancel</button></td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>100</td>
+                    <td>10</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="\node_modules\jquery\dist\jquery.min.js"></script>
+
+    <script>
+
+
+        $(function(){
+            $('#add-task').on('click', function(){
+                alert('clicked');
+            });
+        })
+    </script>
+
+</body>
+
+</html>
