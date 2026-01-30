@@ -50,6 +50,8 @@ const PrimeUtils = (function () {
                         task.primes.push(i)
                 }
 
+                
+
                 if (task.cancellationRequested) {
                     task.status = "cancelled";
                     clearInterval(iid);
