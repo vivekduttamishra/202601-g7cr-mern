@@ -13,7 +13,8 @@ const app=(function(){
     primeTasks.empty();
     loadingIcon.hide()
     let lastId=0
-    let tasks={}
+    // let tasks={}
+    let tasks = []
 
     function generateRow(task){
         return `
@@ -34,27 +35,32 @@ const app=(function(){
     }
 
     function onFindPrime(){
-        let min= Number(minBox.val())
-        let max= Number(maxBox.val())
+        let min= minBox.val()
+        let max= maxBox.val()
         let task={
             id:++lastId,
             min,
             max,
-            done:false
+            status:'idle',
+            error:null,
+            primes:[],
+            cancellationRequested:false
         }
         tasks[task.id]=task;
+        
         let row = generateRow(task)
         primeTasks.append(row);
         let resultBox=$(`#action-${task.id}`)
 
         
-        findPrimes(min,max, (error,primes)=>{
+        findPrimes(task, (error,task)=>{
             if(error){
-                resultBox.html(error.message)
-            }else{
-                task.primes=primes;
-                task.done=true;
-                resultBox.html(task.primes.length)                
+                resultBox.html(`<span class="text-danger">${error.message}</span>`)
+            }else{               
+                // if(task.status==="done")
+                    resultBox.html(task.primes.length)
+                // else 
+                //     resultBox.html(task.status)                
             }
         })
 
@@ -64,7 +70,10 @@ const app=(function(){
     }
     
     function onCancel(id){
-
+        const task= tasks[id]
+        if(task){
+            task.cancellationRequested=true;
+        }
     }
     
     return{
