@@ -11,8 +11,18 @@
 <body>
     <h1>Book Management System</h1>
     <div>
+        <select id="filterList">
+            <option value=" All">All</option>
+            <option value="Title">Title</option>
+            <option value="Author">Author</option>
+            <option value="Price">Price</option>
+        </select>
+        <div id="search-input">
+            <input type="text" placeholder="search" id="search" />
+        </div>
+        <button onclick="app.onSearch()">Search</button>
         <div class="book-table">
-            <table id="book-table" >
+            <table id="book-table">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -22,28 +32,28 @@
                     </tr>
                 </thead>
                 <tbody id="books">
-                    
+
                 </tbody>
             </table>
         </div>
         <div class="book-form">
             <fieldset>
-                
+
                 <legend>Add New Book</legend>
-                
+
                 <label for="id">Id</label>
                 <input type="text" id="id" name="id" placeholder="authomatically generated" disabled>
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title">
-                <label for="author">Author</label> 
+                <label for="author">Author</label>
                 <input type="text" id="author" name="author">
                 <label for="price">Price</label>
                 <input type="text" id="price" name="price">
-                <p/>
-                <button onclick="app.onSave()">Save</button> 
-                <button onclick="app.onClear()">Clear</button> 
+                <p />
+                <button onclick="app.onSave()">Save</button>
+                <button onclick="app.onClear()">Clear</button>
                 <span id="error" class="risky">error</span>
-            
+
             </fieldset>
         </div>
     </div>

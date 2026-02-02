@@ -5,6 +5,7 @@ function BookUI() {
     const title = getInput('title')
     const author = getInput('author')
     const price = getInput('price')
+    
     const books = document.getElementById('books');
 
     this.fromEditor = function () {
@@ -36,6 +37,13 @@ function BookUI() {
 
     this.addBook = function (book) {
         books.innerHTML += createBookRow(book)
+    }
+
+    this.render=function (books){
+        console.log('books',books);
+        
+        this.clearTable()
+        books.forEach(b=>this.addBook(b))
     }
 
     this.addBooks = function (bookList) {
@@ -73,6 +81,8 @@ function App() {
     addSampleBooks(bookManager);
     const bookUI = new BookUI();
     //bookUI.clearTable();
+    const search=getInput('search')
+    const filterList=getInput('filterList')
     bookUI.addBooks(bookManager.getAllBooks());
 
     let errorWriter = getWriter('error', 'strong')
@@ -120,6 +130,26 @@ function App() {
     this.onSelectBook = function (id) {
         const book = bookManager.getBookById(id);
         bookUI.toEditor(book);
+    }
+    this.onSearch=function(){
+        let searchValue=search.getValue()
+        let searchType=filterList.getValue()
+        let result;
+        if(searchType==='All')
+            result = bookManager.getAllBooks()
+        else if(searchType==='Title')
+            result = bookManager.searchByTitle(searchValue)
+        else if(searchType==='Author')
+            result= bookManager.searchByAuthor(searchValue)
+        else if(searchType==='Price'){
+            let [min,max]=searchValue.split('-').map(v=>Number(v))
+            result = bookManager.searchByPriceRange(min,max)
+        }
+
+        if(result)
+            bookUI.render(result)
+
+
     }
 }
 
@@ -174,4 +204,4 @@ function testSearch() {
 
 };
 
-testSearch();
+//testSearch();

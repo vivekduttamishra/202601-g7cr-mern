@@ -60,54 +60,76 @@ BookManager.prototype.updateBook=function(book){
     this.store.updateBook(book);
 }
 
-BookManager.prototype.search=function(criteria, text){
-    let result=[]
+// BookManager.prototype.search=function(criteria, text){
+//     let result=[]
 
-    for(let book of this.store.getAll()){
-        if(criteria==='title' && book.title.toLowerCase().includes(text.toLowerCase())){
-            result.push(book)
-        } else if(criteria==='author' && book.author.toLowerCase().includes(text.toLowerCase())){
-            result.push(book)
-        } else if (criteria==='price'){
-            let range= text.split('-') // 200-300
-            let min = Number(range[0].trim())
-            let max= Number(range[1].trim())
-            if(!isNaN(min) && !isNaN(max) && book.price>=min && book.price<max){
-                result.push(book)
-            }
-        } else if(criteria==='all')
-            result.push(book)
-    }
+//     for(let book of this.store.getAll()){
+//         if(criteria==='title' && book.title.toLowerCase().includes(text.toLowerCase())){
+//             result.push(book)
+//         } else if(criteria==='author' && book.author.toLowerCase().includes(text.toLowerCase())){
+//             result.push(book)
+//         } else if (criteria==='price'){
+//             let range= text.split('-') // 200-300
+//             let min = Number(range[0].trim())
+//             let max= Number(range[1].trim())
+//             if(!isNaN(min) && !isNaN(max) && book.price>=min && book.price<max){
+//                 result.push(book)
+//             }
+//         } else if(criteria==='all')
+//             result.push(book)
+//     }
 
-    return result
+//     return result
+// }
+
+
+// BookManager.prototype.searchByAuthor=function(author){
+//     let result=[]
+//     for(let book of this.getAllBooks())
+//         if(book.author.toLowerCase().equals(author.toLowerCase()))
+//             result.push(book)
+
+//     return result;
+// }
+// BookManager.prototype.searchByTitle=function(title){
+//     let result=[]
+//     for(let book of this.getAllBooks())
+//         if(book.title.toLowerCase().equals(title.toLowerCase()))
+//             result.push(book)
+
+//     return result;
+// }
+// BookManager.prototype.searchByPriceRange=function(min,max){
+//     let result=[]
+//     for(let book of this.getAllBooks())
+//         if(book.price>=min && book.price<max)
+//             result.push(book)
+
+//     return result;
+// }
+
+
+BookManager.prototype.searchAll=function(matcher){
+    return this.store.searchAll(matcher)
 }
 
+BookManager.prototype.searchByAuthor = function(authorName){
+    authorName=authorName.toLowerCase();
 
-BookManager.prototype.searchByAuthor=function(author){
-    let result=[]
-    for(let book of this.getAllBooks())
-        if(book.author.toLowerCase().equals(author.toLowerCase()))
-            result.push(book)
+    return this.searchAll( includes('author',authorName))
 
-    return result;
 }
-BookManager.prototype.searchByTitle=function(title){
-    let result=[]
-    for(let book of this.getAllBooks())
-        if(book.title.toLowerCase().equals(title.toLowerCase()))
-            result.push(book)
 
-    return result;
+BookManager.prototype.searchByTitle = function(title){
+    title=title.toLowerCase();
+
+    return this.searchAll( includes('title', title))
+
 }
+
 BookManager.prototype.searchByPriceRange=function(min,max){
-    let result=[]
-    for(let book of this.getAllBooks())
-        if(book.price>=min && book.price<max)
-            result.push(book)
-
-    return result;
+    return this.searchAll(range('price',min,max))
 }
-
 
 
 function addSampleBooks(bookManager) {

@@ -21,3 +21,7 @@ BookInMemoryStore.prototype.updateBook=function(book){
         }
     }
 }
+
+BookInMemoryStore.prototype.searchAll=function(matcher){
+    return this.books.searchAll(matcher)
+}
