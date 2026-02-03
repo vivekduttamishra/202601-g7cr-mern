@@ -1,7 +1,7 @@
 
-import { test, it, describe, describe, beforeEach } from 'node:test'
+
 import { BankAccount } from '../src/bank-account.js'
-import Assert from 'assert'
+import {expect} from 'chai'
 
 
 
@@ -19,19 +19,22 @@ describe('BankAccount', () => {
             //beforeEach will be called before calling each test
             account = new BankAccount('Test Account', password, balance)
         })
-        test('that deposit succeeds on positive amount', () => {
+        it('that deposit succeeds on positive amount', () => {
 
             account.deposit(1)
 
             //Assert: Throw error if code didn't give expected result
-            Assert.deepEqual(account.balance, balance + 1)
+            //Assert.deepEqual(account.balance, balance + 1)
+            expect(account.balance).to.equal(balance+1)
         })
 
-        test('that deposit fails on negative amount', () => {
+        it('that deposit fails on negative amount', () => {
 
             //Assert
 
-            Assert.throws(() => account.deposit(-1), { message: 'Invalid Amount' })
+            //Assert.throws(() => account.deposit(-1), { message: 'Invalid Amount' })
+
+            expect(()=>account.deposit(-1)).to.throw('Invalid Amount')
         })
 
     })
@@ -42,23 +45,27 @@ describe('BankAccount', () => {
             let account = new BankAccount('Test', password, balance)
             account.withdraw(1, password)
 
-            Assert.deepEqual(balance - 1, account.balance)
+            //Assert.deepEqual(balance - 1, account.balance)
+            expect(account.balance).to.equal(balance-1)
         })
 
         it('should fail to withdraw with invalid password', () => {
             let account = new BankAccount('Test', password, balance)
 
-            Assert.throws(() => account.withdraw(1, "wrong-password"), { message: 'Invalid Password' })
+           // Assert.throws(() => account.withdraw(1, "wrong-password"), { message: 'Invalid Password' })
+           expect(()=>account.withdraw(1,'wrong-password')).to.throw('Invalid Password')
         })
         it('should fail to withdraw with insufficient balance', () => {
             let account = new BankAccount('Test', password, balance)
 
-            Assert.throws(() => account.withdraw(balance + 1, password), { message: 'Insufficient Balance' })
+            //Assert.throws(() => account.withdraw(balance + 1, password), { message: 'Insufficient Balance' })
+            expect(()=>account.withdraw(balance+1,password)).to.throw('Insufficient Balance')
         })
         it('should fail to withdraw negative amount', () => {
             let account = new BankAccount('Test', password, balance)
 
-            Assert.throws(() => account.withdraw(-1, password), { message: 'Invalid Amount' })
+            //Assert.throws(() => account.withdraw(-1, password), { message: 'Invalid Amount' })
+            expect(()=>account.withdraw(-1,password)).to.throw('Invalid Amount')
         })
 
     })
