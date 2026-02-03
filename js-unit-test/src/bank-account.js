@@ -23,6 +23,7 @@ export class BankAccount{
         if(amount>this.balance)
             throw new Error('Insufficient Balance')
 
+        this.balance-=amount;
         return true;
     }
 
