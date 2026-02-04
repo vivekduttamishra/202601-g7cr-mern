@@ -1,5 +1,5 @@
 
-import { test, it, describe, describe, beforeEach } from 'node:test'
+import { test, it, describe,  beforeEach } from 'node:test'
 import { BankAccount } from '../src/bank-account.js'
 import Assert from 'assert'
 
@@ -31,7 +31,7 @@ describe('BankAccount', () => {
 
             //Assert
 
-            Assert.throws(() => account.deposit(-1), { message: 'Invalid Amount' })
+            Assert.throws(() => account.deposit(1), { message: 'Invalid Amount' })
         })
 
     })

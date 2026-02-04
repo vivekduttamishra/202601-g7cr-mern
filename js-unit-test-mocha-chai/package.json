@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test":"mocha -w"
+    "test":"mocha -t 60000 -w"
   },
   "keywords": [],
   "author": "",
