@@ -80,7 +80,12 @@ describe('prime-promise', function () {
             await findPrimes(createPrimeTask(0,100))
                     .should
                     .eventually      //once resolved
-                    .have.property('primes')
+                    .include({'status':'done'})
+                    .and
+                    .have
+                    .property('primes')
+                    .with.length(25);
+
                     
 
         })
