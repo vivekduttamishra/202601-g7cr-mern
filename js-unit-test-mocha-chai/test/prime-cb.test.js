@@ -90,4 +90,17 @@ describe('prime-cb',()=>{
     })
 
 
+    describe('progress test',function(){
+
+        it('should send progress update 50 times between 0 and 50000',function(){
+
+        })
+
+        it('should send progress update only once under 1000 ', function(){
+
+        })
+
+    })
+
+
 })
