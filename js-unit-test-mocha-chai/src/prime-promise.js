@@ -22,7 +22,7 @@ export async function findPrimes(task) {
     } catch (err) {
         task.status = "error"
         task.error = err
-        reject(err)
+        throw err;
         return //no need to process remaining funciton
     }
 
