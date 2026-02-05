@@ -1,0 +1,15 @@
+
+
+.nav button{
+    background-color: transparent;
+    border:0px;
+    font-size:1.2em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav .active{
+    font-weight: 600;
+    text-decoration: none;
+    cursor:not-allowed;
+}

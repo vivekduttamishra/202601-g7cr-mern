@@ -23,46 +23,20 @@ function Heading(props) {
 
 class Navigation extends React.Component {
 
-    // constructor(props){
-    //     super(props);
-
-    //     this.handleClick=this.handleClick.bind(this)
-    // }
-
-    //intial state
-    
-    state={activeButton:'Home'}
-
-    handleClick(id){
-       
-        console.log('clicked', id);
-        // let option= this.props.options.find(o=>o.label===id)
-        // console.log('option',option)
-
-        //this.activeButton=id;
-        
-        //this.state.activeButton=id
-
-        this.setState({ activeButton:id })
-
-        console.log('state', this.state)
-        
-        
-    }
 
     render() {
-       
+        // const linkStyle={
+        //     border:0,
+        //     backgroundColor:'transparent'
+        // }
+
+        console.log('Navigation Props Options', 
+            this.props.options)
 
         return (<div className='nav' >
-            {
-                this.props.options.map(option=>(
-                    <button key={option.label} 
-                        className={ this.state.activeButton===option.label ? 'active' : '' }
-                        onClick={e=>this.handleClick(option.label)}>
-                        {option.label}
-                    </button>)
-                )
-            }
+            <button >Home</button>
+            <button >Authors</button>
+            <button >Books</button>
 
         </div>)
     }
