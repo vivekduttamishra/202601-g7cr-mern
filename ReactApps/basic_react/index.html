@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,25 @@
     <!-- 1. Load React & ReactDOM (Development versions for better errors) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-   
-    
-    
+
+    <!-- add babel to transform JSX -->
+    <!-- 2. Load Babel (To compile JSX in the browser) -->
+    <script 
+      src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
 </head>
+
 <body>
-  
-   <div id="container">
-        This is where React component 
+
+    <div id="container">
+        This is where React component
         will appear.
         If you see this message...wait
-   </div>
+    </div>
 
-   <script src="app.js"></script>
+    <script type="text/babel" src="app.js"></script>
 </body>
+
 </html>

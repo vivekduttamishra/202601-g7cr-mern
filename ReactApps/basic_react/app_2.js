@@ -21,12 +21,32 @@ let link=React.createElement(
         'React Official Page'
     
 )
+/*
+    <div>
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+*/
 
 let body= React.createElement(
     'div',
     null,
     'Welcome to React:',
-    link
+    
+    React.createElement("div",null,
+        React.createElement("ul",null,
+        
+            React.createElement("li",null,"one"),
+            React.createElement("li",null,"two"),
+            React.createElement("li",null,"three"),
+
+        
+        )
+    )
+
 )
 
 
