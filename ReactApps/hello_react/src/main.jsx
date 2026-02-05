@@ -14,7 +14,7 @@ function Heading() {
             Book's Web
         </Title>
         <Navigation options="Basic Navigation" />
-    </div> 
+    </div>  
 }
 
 
