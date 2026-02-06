@@ -25,3 +25,79 @@
     font-size:2em;
 
 }
+
+.book-list{
+    
+}
+
+.book-list li{
+    cursor: pointer;
+    list-style:none;
+    border-bottom:1px solid gray;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+
+.book-nav-item{
+    display:block;
+    width:90%;
+    background:transparent;
+    padding:5px;
+    font-size:1em;
+    cursor:pointer;
+    
+    text-align: center;
+    border:1px solid gray;
+}
+
+.book-nav-item:hover{
+    background-color: lightyellow;
+    font-weight: bold;
+}
+
+.wrapper{
+    display:flex;
+    flex-direction: row;
+    
+    justify-content: left;/* main axis*/
+    align-items:stretch; /* cross axis*/
+}
+
+.book-list{
+    border-right:1px solid gray;
+    flex:2;
+    margin-right:10px;
+}
+
+.book-details{
+    
+    flex:8;
+}
+
+.wrapper .left{
+    border-right:1px solid gray;
+    margin-right:10px;
+    padding-right:10px;
+}
+
+.wrapper .right{
+    flex:1
+}
+
+.book-cover{
+    max-width:200px;
+    box-shadow: -5px -5px 5px  gray;
+    border-radius:10px;
+    display:block;
+}
+
+.selected-book{
+    background-color: limegreen;
+    font-weight:bold;
+}
+
+.danger{
+    width:100%;
+    background-color: coral;
+    margin:5px;
+}
