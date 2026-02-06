@@ -1,42 +1,43 @@
 import React from 'react';
 
 
-class BookList extends React.Component {
+//class BookList extends React.Component {
 
-    state={
-        selectedIsbn:null
-    }
-    
-    render=()=> {
-    
-        let {books}=this.props;
+// state={
+//     selectedIsbn:null
+// }
 
-        const onBookSelect = isbn => {
-            this.setState({selectedIsbn:isbn})
-            this.props.onBookSelect(isbn);
-        }
+const BookList = ({ books, selectedBook, onBookSelect }) => {
 
-        const getClass=(isbn)=> {
-            let baseClass='book-nav-item ';
-            if(isbn===this.state.selectedIsbn)
-                baseClass+="selected-book"
-            return baseClass
-        }
-    
-        return (
-            <div className='book-list'>
-                {
-                    books.map(book => <div
-                        className={getClass(book.isbn)}
-                        key={book.isbn}
-                        onClick={() => onBookSelect(book.isbn)}
-                    >{book.title}
-                    </div>)
-                }
-            </div>
-        )
+    //let {books}=this.props;
+
+    // const onBookSelect = isbn => {
+    //     //this.setState({selectedIsbn:isbn})
+    //     onBookSelect(isbn);
+    // }
+
+    const getClass = (isbn) => {
+        let baseClass = 'book-nav-item ';
+        //if(isbn===this.state.selectedIsbn)
+        if (isbn === selectedBook?.isbn)
+            baseClass += "selected-book"
+        return baseClass
     }
 
+    return (
+        <div className='book-list'>
+            {
+                books.map(book => <div
+                    className={getClass(book.isbn)}
+                    key={book.isbn}
+                    onClick={() => onBookSelect(book.isbn)}
+                >{book.title}
+                </div>)
+            }
+        </div>
+    )
 }
+
+
 
 export default BookList;

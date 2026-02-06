@@ -1,4 +1,6 @@
-function BookDetails({ selectedBook }) {
+import DangerButton from "./DangerButton";
+
+function BookDetails({ selectedBook,onBookDelete }) {
 
     //let {selectedBook} = props;
 
@@ -12,8 +14,10 @@ function BookDetails({ selectedBook }) {
         <h2>{selectedBook.title}</h2>
         <div className='wrapper'>
             <div className='left'>
+                <DangerButton                    
+                    onClick={onBookDelete}
+                > Delete Book</DangerButton>
                 <img className='book-cover' src={selectedBook.cover} />
-                <button className='danger'> Delete Book</button>
             </div>
             <div className='right'>
                 <ul>

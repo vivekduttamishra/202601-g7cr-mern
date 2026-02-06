@@ -101,3 +101,11 @@
     background-color: coral;
     margin:5px;
 }
+
+.danger-button{
+    display:block;
+    margin:auto;
+    margin-top:5px;
+    background-color: coral;
+   
+}
