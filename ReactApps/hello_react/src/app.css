@@ -1,4 +1,8 @@
 
+.heading{
+    border-bottom:1px solid gray;
+    padding-bottom:10px;
+}
 
 .nav button{
     background-color: transparent;
@@ -12,4 +16,12 @@
     font-weight: 600;
     text-decoration: none;
     cursor:not-allowed;
+}
+
+.container{
+    padding:10px;
+}
+.book-manager h2{
+    font-size:2em;
+
 }
