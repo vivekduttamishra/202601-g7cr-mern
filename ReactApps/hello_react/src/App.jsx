@@ -22,9 +22,10 @@ const MyApp = () => {
     let [books,setBooks]=useState(_books);
     let [selectedBook,selectBook]=useState(null)
 
-    const selectBookFn=book=>{
-        selectBook(book)
-    }
+    // Why do we need this? Why not directly navigate to details screen with book info?
+    // const selectBookFn=book=>{
+    //     selectBook(book)
+    // }
 
     const handleBookSelect= book=>{
         selectBook(book)
