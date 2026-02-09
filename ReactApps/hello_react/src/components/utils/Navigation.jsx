@@ -23,6 +23,8 @@ class Navigation extends React.Component {
         //this.state.activeButton=id
 
         this.setState({ activeButton:id })
+        let option= this.props.options.find(o=>o.label===id)
+        this.props.onNavigate(option.target);
 
         //console.log('state', this.state)
         

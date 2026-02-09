@@ -1,5 +1,5 @@
 
-import books from '../data/books.json'
+import books from '../../data/books.json'
 import BookList from './BookList'
 import BookDetails from './BookDetails'
 import React from 'react'

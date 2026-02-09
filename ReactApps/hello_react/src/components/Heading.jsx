@@ -1,5 +1,5 @@
 import Title from './Title'
-import Navigation from './Navigation'
+import Navigation from './utils/Navigation'
 
 function Heading(props) {
 
@@ -10,7 +10,7 @@ function Heading(props) {
         <Title size={45} color="maroon" >
             {props.title}
         </Title>
-        <Navigation options={props.menu} />
+        <Navigation options={props.menu} onNavigate={props.onNavigate} />
     </div>
 }
 

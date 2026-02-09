@@ -107,5 +107,11 @@
     margin:auto;
     margin-top:5px;
     background-color: coral;
+    margin:10px;
    
+}
+
+.screen{
+    border:1px solid red;
+    margin:10px;
 }

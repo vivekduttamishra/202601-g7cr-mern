@@ -1,4 +1,4 @@
-import DangerButton from "./DangerButton";
+import DangerButton from "../utils/DangerButton";
 
 function BookDetails({ selectedBook,onBookDelete }) {
 
