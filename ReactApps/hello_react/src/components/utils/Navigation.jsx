@@ -23,8 +23,10 @@ class Navigation extends React.Component {
         //this.state.activeButton=id
 
         this.setState({ activeButton:id })
-        let option= this.props.options.find(o=>o.label===id)
-        this.props.onNavigate(option.target);
+        let keys=Object.keys(this.props.options);
+        let option= keys.find(key=>key===id)
+        console.log('selected option',option)
+        this.props.onNavigate(option);
 
         //console.log('state', this.state)
         
@@ -40,15 +42,16 @@ class Navigation extends React.Component {
             else
                 return ""
         }
-
+        let keys=Object.keys(this.props.options);
+        //console.log('navigation.props',keys)
         return (<div className='nav' >
             {
-                this.props.options.map(option=>(
-                    <button key={option.label} 
-                        className={ getButtonClass(option.label) }
-                        onClick={()=>this.handleClick(option.label)}
+                keys.map(key=>(
+                    <button key={key} 
+                        className={ getButtonClass(key) }
+                        onClick={()=>this.handleClick(key)}
                         >
-                        {option.label}
+                        {this.props.options[key].label}
                     </button>)
                 )
             }

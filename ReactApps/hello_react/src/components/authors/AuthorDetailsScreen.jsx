@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import withConditionalVisibility from '../../hoc/withConditionalVisibility';
 
 const AuthorDetailsScreen = ({id}) => {
     //component logic here
@@ -10,4 +11,4 @@ const AuthorDetailsScreen = ({id}) => {
     );
 };
 
-export default AuthorDetailsScreen;
+export default withConditionalVisibility( AuthorDetailsScreen);

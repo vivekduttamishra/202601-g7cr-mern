@@ -1,3 +1,4 @@
+import withConditionalVisibility from "../../hoc/withConditionalVisibility";
 import DangerButton from "../utils/DangerButton";
 
 function BookDetails({ selectedBook,onBookDelete }) {
@@ -33,4 +34,4 @@ function BookDetails({ selectedBook,onBookDelete }) {
 }
 
 
-export default BookDetails;
+export default withConditionalVisibility( BookDetails );

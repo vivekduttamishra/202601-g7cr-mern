@@ -4,6 +4,7 @@ import Border from './utils/Border'
 import Expandable from './utils/Expandable'
 import FAQ from './utils/FAQ'
 import withBorder from '../hoc/withBorder'
+import withConditionalVisibility from '../hoc/withConditionalVisibility'
 
 
 
@@ -11,7 +12,7 @@ import withBorder from '../hoc/withBorder'
 class HomeScreen extends Component {
 
     render() {
-        console.log('this.props',this.props)
+        console.log('this.props', this.props)
         return (
             <div className='HomeScreen screen'>
 
@@ -24,4 +25,7 @@ class HomeScreen extends Component {
     }
 }
 
-export default withBorder(HomeScreen)
+export default withConditionalVisibility(
+                        withBorder(
+                            HomeScreen
+                        ))

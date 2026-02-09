@@ -13,18 +13,13 @@ import AuthorListScreen from './components/authors/AuthorListScreen'
 import AuthorDetailsScreen from './components/authors/AuthorDetailsScreen'
 import faqs from './data/faq'
 import _books from './data/books.json'
-import ScreenManager from './components/utils/ScreenManager'
 
 
 const MyApp = () => {
 
-    let [screen, navigate] = useState('/');
+    let [screen, navigate] = useState('/books');
     let [books,setBooks]=useState(_books);
     let [selectedBook,selectBook]=useState(null)
-
-    const selectBookFn=book=>{
-        selectBook(book)
-    }
 
     const handleBookSelect= book=>{
         selectBook(book)
@@ -40,19 +35,25 @@ const MyApp = () => {
     // ]
 
     let screens={
-        '/': {label:'Home', factory: ()=><HomeScreen faqs={faqs}/>},
-        '/books': {label:'Books', factory:()=><BookListScreen books={books}  onBookSelect={handleBookSelect}/>},
-        '/books/details': {label:'Book Details', factory:() =><BookDetailsScreen selectedBook={selectedBook} onBack={()=>navigate('/books')}/>},
-        '/authors': {label:'Authors', factory:()=><AuthorListScreen visible={true} /> },
-        '/authors/details': {label:'Author Details', factory:()=><AuthorDetailsScreen/>}
+        '/': ()=><HomeScreen faqs={faqs}/>,
+        '/books': ()=><BookListScreen books={books} faqs={faqs} onBookSelect={handleBookSelect}/>,
+        '/books/details': () =><BookDetailsScreen selectedBook={selectedBook} onBack={()=>navigate('/books')}/>,
+        '/authors': ()=><AuthorListScreen /> ,
+        '/authors/details': ()=><AuthorDetailsScreen/>
     }
 
 
 
     return <div>
-        <Heading title="World of Books" menu={screens} onNavigate={navigate} />
+        <Heading title="World of Books" menu={menu} onNavigate={navigate} />
         <div className="container">
-            <ScreenManager screens={screens} selectedScreen={screen} />
+
+            <HomeScreen faqs={faqs} visible={screen==='/'} />
+            <BookListScreen visible={screen==='/books'} />
+            <BookDetailsScreen visible={screen==='/books/details'} />
+            <AuthorListScreen visible={screen==='/authors'} />
+            <AuthorDetailsScreen visible={screen==='/authors/details'} />
+            
         </div>
 
 
