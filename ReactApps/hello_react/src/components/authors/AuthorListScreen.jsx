@@ -1,12 +1,17 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import Border from '../utils/Border';
 
-const AuthorListScreen = ({id}) => {
+const AuthorListScreen = ({ id }) => {
     //component logic here
-    
+
     return (
-        <div>
-            <h2>AuthorListScreen</h2>
-        </div>
+        <Border >
+
+            <div>
+                <h2>AuthorListScreen</h2>                
+            </div>
+        
+        </Border>
     );
 };
 

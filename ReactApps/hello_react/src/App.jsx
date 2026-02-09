@@ -1,5 +1,5 @@
 //import style before other components
-import {useState} from 'react'
+import { useState } from 'react'
 import './app.css'
 //so that other components can use the style
 import Heading from './components/Heading'
@@ -8,32 +8,41 @@ import Footer from './components/Footer'
 import HomeScreen from './components/HomeScreen'
 import BookListScreen from './components/books/BookListScreen'
 import BookDetailsScreen from './components/books/BookDetailsScreen'
-
+import If from './components/utils/If'
 import AuthorListScreen from './components/authors/AuthorListScreen'
+import faqs from './data/faq'
+
 
 const MyApp = () => {
 
-    let [screen,navigate]=useState('/');
+    let [screen, navigate] = useState('/books');
 
-    let menu=[
-        {label:'Home', target:'/'},
-        {label:'Authors', target:'/authors'},
-       // {label:'Add Author', target:'/auhors/add'},
-        {label:'Books', target:'/books'},
-       // {label:'Add Book', target:'/books/add'},
+    let menu = [
+        { label: 'Home', target: '/' },
+        { label: 'Authors', target: '/authors' },
+        // {label:'Add Author', target:'/auhors/add'},
+        { label: 'Books', target: '/books' },
+        // {label:'Add Book', target:'/books/add'},
     ]
 
-    
+
 
     return <div>
         <Heading title="World of Books" menu={menu} onNavigate={navigate} />
         <div className="container">
-           { screen==='/' && <HomeScreen/> }
-           { screen==='/books' && <BookListScreen/> }
-           { screen==='/books/details' && <BookDetailsScreen/> }
-           { screen==='/authors' && <AuthorListScreen/>}
+
+            <HomeScreen faqs={faqs} />
+            
         </div>
-        <Footer/>
+
+
+        {/* <If condition={screen === '/'} element={<HomeScreen />} />
+            <If condition={screen === '/books'}>
+                <BookListScreen />
+            </If>
+            {screen === '/books/details' && <BookDetailsScreen />}
+            {screen === '/authors' && <AuthorListScreen />} */}
+        <Footer />
     </div>
 }
 

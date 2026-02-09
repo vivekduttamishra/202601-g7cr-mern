@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import withBorder from '../../hoc/withBorder';
 
 const BookListScreen = ({id}) => {
     //component logic here
@@ -11,4 +12,4 @@ const BookListScreen = ({id}) => {
     );
 };
 
-export default BookListScreen;  
+export default withBorder( BookListScreen );  

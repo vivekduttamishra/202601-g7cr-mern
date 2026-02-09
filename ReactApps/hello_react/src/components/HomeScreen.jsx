@@ -1,16 +1,27 @@
-import {Component} from 'react'
+import { Component } from 'react'
+import Border from './utils/Border'
 
-class Body extends Component {
+import Expandable from './utils/Expandable'
+import FAQ from './utils/FAQ'
+import withBorder from '../hoc/withBorder'
+
+
+
+
+class HomeScreen extends Component {
+
     render() {
-        return <div className='BookDtailsScreen screen'>
+        console.log('this.props',this.props)
+        return (
+            <div className='HomeScreen screen'>
 
-            <h2>Welcome To Home Page</h2>
-            <a href='https://react.dev' target='_blank'>
-                Learn More!
-            </a>
-        </div>
+                <h2>FAQS</h2>
 
+                <FAQ faqs={this.props.faqs} />
+
+            </div>
+        )
     }
 }
 
-export default Body
+export default withBorder(HomeScreen)
