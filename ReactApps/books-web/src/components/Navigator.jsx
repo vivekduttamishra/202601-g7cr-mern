@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {Link} from 'react-router-dom'
 
 const Navigator = ({ id }) => {
     //component logic here
@@ -7,10 +8,10 @@ const Navigator = ({ id }) => {
         <div className='Navigator '>
             <h2>Navigator</h2>
             <div className="nav">
-                <a href="/">Home</a>
-                <a className='' href="/books">Books</a>
-                <a className='' href="/bookmanager">Book Manager</a>
-                <a href="/authors">Authors</a>
+                <Link to="/">Home</Link>
+                <Link className='' to="/books">Books</Link>
+                <Link className='' to="/bookmanager">Book Manager</Link>
+                <Link to="/authors">Authors</Link>
             </div>
         </div>
     );

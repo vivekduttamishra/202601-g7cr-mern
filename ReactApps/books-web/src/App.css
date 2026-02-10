@@ -155,3 +155,11 @@
     border-top:1px solid gray;
     padding-left:10px;
 }
+
+.NotFoundScreen{
+    color:darkred;
+    
+    img{
+        max-width:350px;
+    }
+}

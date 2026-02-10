@@ -1,12 +1,15 @@
+import {Link} from 'react-router-dom'
+
 
 const BookCard=({book, onBookSelect})=>{
 
     return (
-        <a className='bookCard' 
-            href={`/bookdetails/${book.isbn}`}>
-            <img src={book.cover}  alt={book.title} title={book.title}/>
+        <Link className='bookCard' 
+            to={`/books/${book.isbn}`}>
+            <img src={book.cover}  alt={book.title} 
+            title={book.title}/>
             <h4>{book.title}</h4>
-        </a>
+        </Link>
     )
 }
 

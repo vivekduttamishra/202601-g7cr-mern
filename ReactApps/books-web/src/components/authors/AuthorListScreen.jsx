@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Border from '../utils/Border';
-import withConditionalVisibility from '../../hoc/withConditionalVisibility';
+import withConditionalVisibility from '../../hocs/withConditionalVisibility';
 
 const AuthorListScreen = ({ id }) => {
     //component logic here
