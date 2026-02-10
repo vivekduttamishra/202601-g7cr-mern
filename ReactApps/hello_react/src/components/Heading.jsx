@@ -1,3 +1,4 @@
+import { withDate } from '../hoc/withDate';
 import Title from './Title'
 import Navigation from './utils/Navigation'
 
@@ -10,8 +11,9 @@ function Heading(props) {
         <Title size={45} color="maroon" >
             {props.title}
         </Title>
+        <span>{props.date.toLocaleDateString()}</span>
         <Navigation options={props.menu} onNavigate={props.onNavigate} />
     </div>
 }
 
-export default Heading;
+export default withDate(Heading);

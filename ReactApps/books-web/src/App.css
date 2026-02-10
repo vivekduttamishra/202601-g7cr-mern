@@ -4,18 +4,21 @@
     padding-bottom:10px;
 }
 
-.nav button{
+.nav button, .nav a{
     background-color: transparent;
     border:0px;
     font-size:1.2em;
     text-decoration: underline;
     cursor: pointer;
+    margin-right:5px;
+    color:black;
+    text-decoration: none;
 }
 
 .nav .active{
     font-weight: 600;
     text-decoration: none;
-    cursor:not-allowed;
+    /* cursor:not-allowed; */
 }
 
 .container{
@@ -135,6 +138,8 @@
     flex-direction:column;
     align-items: center;
     width:200px;   
+    color:black;
+    text-decoration: none;
     text-align: center; 
     border:1px solid gray;
     margin:5px;
@@ -146,3 +151,7 @@
     }
 }
 
+.screen{
+    border-top:1px solid gray;
+    padding-left:10px;
+}

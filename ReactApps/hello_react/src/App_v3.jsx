@@ -12,29 +12,38 @@ import If from './components/utils/If'
 import AuthorListScreen from './components/authors/AuthorListScreen'
 import AuthorDetailsScreen from './components/authors/AuthorDetailsScreen'
 import faqs from './data/faq'
-//import _books from './data/books.json'
+import _books from './data/books.json'
 import ScreenManager from './components/utils/ScreenManager'
 
 
 const MyApp = () => {
 
     let [screen, navigate] = useState('/');
-    //let [books,setBooks]=useState(_books);
-    //let [selectedBook,selectBook]=useState(null)
-    let [selectedIsbn, selectIsbn] = useState(null)
+    let [books,setBooks]=useState(_books);
+    let [selectedBook,selectBook]=useState(null)
 
+    // Why do we need this? Why not directly navigate to details screen with book info?
+    // const selectBookFn=book=>{
+    //     selectBook(book)
+    // }
 
-    const handleBookSelect=isbn=>{
-        selectIsbn(isbn)
+    const handleBookSelect= book=>{
+        selectBook(book)
         navigate('/books/details')
     }
 
- 
+    // let menu = [
+    //     { label: 'Home', target: '/' },
+    //     { label: 'Authors', target: '/authors' },
+    //     // {label:'Add Author', target:'/auhors/add'},
+    //     { label: 'Books', target: '/books' },
+    //     // {label:'Add Book', target:'/books/add'},
+    // ]
 
     let screens={
         '/': {label:'Home', factory: ()=><HomeScreen faqs={faqs}/>},
-        '/books': {label:'Books', factory:()=><BookListScreen onBookSelect={handleBookSelect}/>},
-        '/books/details': {label:'Book Details', factory:() =><BookDetailsScreen selectedIsbn={selectedIsbn} onBack={()=>navigate('/books')}/>},
+        '/books': {label:'Books', factory:()=><BookListScreen books={books}  onBookSelect={handleBookSelect}/>},
+        '/books/details': {label:'Book Details', factory:() =><BookDetailsScreen selectedBook={selectedBook} onBack={()=>navigate('/books')}/>},
         '/authors': {label:'Authors', factory:()=><AuthorListScreen visible={true} /> },
         '/authors/details': {label:'Author Details', factory:()=><AuthorDetailsScreen/>}
     }

@@ -1,6 +1,5 @@
 import {useState} from 'react';
-import withBorder from '../../hoc/withBorder';
-import withConditionalVisibility from '../../hoc/withConditionalVisibility';
+import withConditionalVisibility from '../../hocs/withConditionalVisibility';
 import bookService from '../../services/BookService';
 import BookCard from './BookCard';
 
@@ -18,7 +17,7 @@ const BookListScreen = ({id,onBookSelect}) => {
                         <BookCard 
                         key={book.isbn} 
                         book={book}
-                        onBookSelect={()=>onBookSelect(book.isbn)}
+                        
                         />       
                     ))
                 }
@@ -30,5 +29,5 @@ const BookListScreen = ({id,onBookSelect}) => {
 };
 
 export default withConditionalVisibility( 
-                    withBorder( BookListScreen )
+                    BookListScreen 
                 );  
