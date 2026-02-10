@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 
 
-const DangerButton = ({children,onClick})=>{
+const DangerButton = ({children,onClick,className})=>{
     
     let [attempts,setAttempts] = useState(3);
    
@@ -13,9 +13,11 @@ const DangerButton = ({children,onClick})=>{
             onClick(); //call the actual onclick by user
     }
 
+    
+
     return <button 
                 onClick={handleClick}
-                className='danger-button'
+                className={`danger-button ${className}`} 
             >
                 
         {attempts>1?"Confirm ":""}

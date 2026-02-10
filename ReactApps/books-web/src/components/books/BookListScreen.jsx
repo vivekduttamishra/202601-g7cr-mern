@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useParams, useLocation} from 'react-router-dom'
+import {useParams, useLocation, Link} from 'react-router-dom'
 
 import withConditionalVisibility from '../../hocs/withConditionalVisibility';
 import bookService from '../../services/BookService';
@@ -14,6 +14,7 @@ const BookListScreen = ({id,onBookSelect}) => {
     return (
         <div className='BookListScreen screen'>
             <h2>Book List Screen</h2>
+            <Link className='btn btn-sm btn-primary' to='/books/add'>Add New Book</Link>
             <div className="booksContainer">
                 {
                     books.map(book=>(

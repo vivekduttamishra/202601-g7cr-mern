@@ -12,6 +12,7 @@ import './App.css'
 
 import { Routes, Route } from 'react-router-dom'
 import NotFoundScreen from './components/utils/NotFoundScreen'
+import BookAddScreen from './components/books/BookAddScreen'
 function App() {
 
 
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeScreen/>} />
             <Route path="/books" element={<BookListScreen/>} />
+            <Route path="/books/add" element={<BookAddScreen/>} />
             <Route path="/books/:isbn" element = {<BookDetailsScreen/>} />
             <Route path="/bookmanager" element={<BookManager/>} />
             <Route path="/authors" element={<AuthorListScreen/>} />

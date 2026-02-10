@@ -15,7 +15,8 @@ function BookDetails({ selectedBook,onBookDelete }) {
         <h2>{selectedBook.title}</h2>
         <div className='wrapper'>
             <div className='left'>
-                <DangerButton                    
+                <DangerButton  
+                    className='btn btn-sm btn-danger'                  
                     onClick={onBookDelete}
                 > Delete Book</DangerButton>
                 <img className='book-cover' src={selectedBook.cover} />
