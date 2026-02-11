@@ -1,63 +1,78 @@
 import { useState } from 'react';
 import withConditionalVisibility from '../../hocs/withConditionalVisibility';
+import LabeledInput, { TextArea, textAreaBuilder } from '../utils/Input';
+
 
 const BookAddScreen = ({ id }) => {
     //component logic here
-    function handleAdd(e){
-        e.preventDefault(); //don't submit to server
-       
-        //TODO:
-        //Get values from each field
-        //make sure fields pass validations
-        // required information:  isbn, title, price, 
-        // price: must be a number>=0
-        // description: minimum length 50chars, max 2000chars
+    
 
-        //if validation passes
-            //add the object to book service
-            //return back to booklist screen
-        //else
-            //show the validation error on the screen
-            //do not save
-            //do not return
+    let [book,setBook]=useState({
+        id:'', //auto generate
+        isbn:'',
+        title:'',
+        author:'',
+        price:0,
+        cover:'',
+        rating:'',
+        description:''
+    });
 
-        //avoid redundant code wherever possible.
-      
+    const handleFormChange=(value,id)=>{
+        
+        // let newBook={...book} // create a copy of current book value
+        // newBook[id]=value  //update the field by id
+
+
+        let newBook = {...book, [id]:value}; //update one key
+
+        console.log('book updated',newBook); 
+        
+        //now update the state to make this data final
+        setBook(newBook) 
+        
+        
     }
 
-    let [title,setTitle]=useState('Rashmirathi')
+    const handleFormSubmit=(e)=>{
+        //step 1. make sure form is not auto submited to server
+        e.preventDefault()
+
+        //we already have the book with us
+        //step 2. run the validation
+
+        //step 3. if validation passes save
+        console.log('saving', book)
+    }
 
 
     return (
         <div className='BookAddScreen screen'>
             <h2>Add New Book</h2>
-            <form onSubmit={handleAdd} className="bookForm">
-                <div>
-                    <label htmlFor='isbn'>ISBN</label>
-                    <input type='text' id='isbn' placeholder='19393939393' />
-                </div>
-                <div>
-                    <label htmlFor='title'>Title</label>
-                    <input type='text' value={title} onChange={e=> setTitle(e.target.value)} id='title' placeholder='The Book Title' />
-                </div>
-                <div>
-                    <label htmlFor='author'>Author</label>
-                    <input type='text' id='author' placeholder='Author Name' />
-                </div>
-                <div>
-                    <label htmlFor='price'>Price</label>
-                    <input type='text' id='price' placeholder='₹' />
-                </div>
-                <div>
-                    <label htmlFor='cover'>Cover</label>
-                    <input type='text' id='cover' placeholder='https://' />
-                </div>
-                <div>
-                    <label htmlFor='description'>Description</label>
-                    <textarea type='text' id='description' placeholder='' >
-                    </textarea>
-                </div>
+            <form onSubmit={handleFormSubmit} className="bookForm">
+                <LabeledInput id="id" value={book.id} onChange={handleFormChange}
+                    label="Book Id (Optional)" groupClassName='margin5'
+                />
+                
+                <LabeledInput id="title" value={book.title} onChange={handleFormChange}
+                    label="Book Title" groupClassName='margin5'
+                />
+                <LabeledInput id="author" value={book.author} onChange={handleFormChange}
+                    label="Author" groupClassName='margin5'
+                />
+                <LabeledInput id="price" value={book.title} onChange={handleFormChange}
+                    label="Price" groupClassName='margin5'
+                />
+                <LabeledInput id="rating" value={book.rating} onChange={handleFormChange}
+                    label="Rating (Out of 5)" groupClassName='margin5'
+                />
+                <LabeledInput id="description" value={book.description} onChange={handleFormChange}
+                    
+                    inputBuilder={textAreaBuilder}
+                    label="Description" groupClassName='margin5'
+                />
 
+                
                 <button type="submit"  className='btn btn-primary'>Add</button>
             </form>
 

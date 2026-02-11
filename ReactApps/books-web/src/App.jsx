@@ -26,7 +26,7 @@ function App() {
             <Route path="/" element={<HomeScreen/>} />
             <Route path="/books" element={<BookListScreen/>} />
             <Route path="/books/add" element={<BookAddScreen/>} />
-            <Route path="/books/:isbn" element = {<BookDetailsScreen/>} />
+            <Route path="/books/:id" element = {<BookDetailsScreen/>} />
             <Route path="/bookmanager" element={<BookManager/>} />
             <Route path="/authors" element={<AuthorListScreen/>} />
             <Route path="/authors/:id" element={<AuthorDetailsScreen/>} />

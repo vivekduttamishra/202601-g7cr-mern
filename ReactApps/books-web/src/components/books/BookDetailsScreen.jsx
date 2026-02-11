@@ -9,12 +9,14 @@ import NotFoundScreen from '../utils/NotFoundScreen';
 import {useNavigate} from 'react-router-dom'
 
 
-const BookDtailsScreen = ({id}) => {
+const BookDtailsScreen = () => {
     //component logic here
     //const isbn = window.location.pathname.split('/').pop();
     
-    const {isbn} = useParams()    
-    const selectedBook= bookService.getBookById(isbn);
+    const {id} = useParams()  
+    console.log('id',id);
+      
+    const selectedBook= bookService.getBookById(id);
     
     const navigate = useNavigate();
     
@@ -22,13 +24,13 @@ const BookDtailsScreen = ({id}) => {
 
 
     const handleBookDelete= ()=>{
-        bookService.deleteBook(isbn)
+        bookService.deleteBook(id)
         //go back to /books
         navigate('/books')
     }
 
     if(!selectedBook)
-        return <NotFoundScreen errorMessage={`Invalid ISBN ID: ${isbn}`} />
+        return <NotFoundScreen errorMessage={`Invalid ID: ${id}`} />
 
     return (
         <div className='BookDtailsScreen screen'>

@@ -1,4 +1,5 @@
 import _books from '../data/books.json'
+import { isNumber, maxLength, min, required } from './validation';
 
 const key='booksdb'
 
@@ -33,26 +34,45 @@ export class BookService{
 
     getAllBooks(){return this.books;}
 
+    validate(book){
+        required()(book.title,'title',book)
+        required()(book.author,'author',book)
+        isNumber()(book.price,'price',book)
+        min(0)(book.price,'price',book)
+        max(5000)(book.price, 'price', book)
+        min(1)(book.rating, 'rating',book)
+        max(5)(book.rating, 'rating', book)
+        required()(book.description, 'description', book )
+        minLength(50)(book.description, 'description',book)
+        maxLength(50)(book.description, 'description', book)
+        
+    }
+
     addBook(book){
+        if(!book.id)
+            book.id=book.title.toLowerCase().split(' ').join('-')
+
+        book.id=book.id.trim();
         this.validate(book)
         this.books.push(book)
         this.save()
     }
 
-    getBookById(isbn){
-        return this.books.find(b=>b.isbn===isbn);
+    getBookById(id){
+        id=id.trim()
+        return this.books.find(b=>b.id.trim()===id)         
     }
 
     updateBook(book){
         this.validate(book);
 
-        this.books=this.books.map( b=> b.isbn===book.isbn?book:b)
+        this.books=this.books.map( b=> b.id===book.id?book:b)
         this.save()
 
     }
 
-    deleteBook(isbn){
-        this.books=this.books.filter(b=>b.isbn!==isbn)
+    deleteBook(id){
+        this.books=this.books.filter(b=>b.id!==id)
         this.save()
     }
 
