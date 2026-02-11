@@ -1,6 +1,5 @@
 import _books from '../data/books.json'
 import { isNumber, maxLength, min, max, minLength, required, throwOnError, validate } from './validation';
-import {delay} from './delay'
 
 const key='booksdb'
 
@@ -55,16 +54,23 @@ export class BookService{
 
     }
 
-    async getAllBooks(){
-        await delay(3000); //you get book after 3 seconds . not now
-        return this.books;
-    }
+    getAllBooks(){return this.books;}
 
-   
+    // validate(book){
+    //     required()(book.title,'title',book)
+    //     required()(book.author,'author',book)
+    //     isNumber()(book.price,'price',book)
+    //     min(0)(book.price,'price',book)
+    //     max(5000)(book.price, 'price', book)
+    //     min(1)(book.rating, 'rating',book)
+    //     max(5)(book.rating, 'rating', book)
+    //     required()(book.description, 'description', book )
+    //     minLength(50)(book.description, 'description',book)
+    //     maxLength(2500)(book.description, 'description', book)
+        
+    // }
 
-    async addBook(book){
-        await delay(2000); //takes 2 seconds to add book
-
+    addBook(book){
         if(!book.id)
             book.id=book.title.toLowerCase().split(' ').join('-')
 
@@ -77,8 +83,7 @@ export class BookService{
         this.save()
     }
 
-    async getBookById(id){
-        await delay(3000); 
+    getBookById(id){
         id=id.trim()
         return this.books.find(b=>b.id.trim()===id)         
     }

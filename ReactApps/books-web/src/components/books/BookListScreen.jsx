@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useParams, useLocation, Link} from 'react-router-dom'
 
 import withConditionalVisibility from '../../hocs/withConditionalVisibility';
@@ -7,10 +7,27 @@ import BookCard from './BookCard';
 
 
 
-const BookListScreen = ({id,onBookSelect}) => {
+const BookListScreen = () => {
     //component logic here
-   
-    let books = bookService.getAllBooks();
+    let [books,setBooks]=useState(null);
+
+    useEffect(()=>{
+       
+        async function getAllBooks(){
+            let books=await bookService.getAllBooks()
+            setBooks(books);
+        }
+
+        getAllBooks();
+
+
+    },[]);
+
+    if(!books)
+        return <h3>loading...</h3>
+    
+
+    //let books = bookService.getAllBooks();
     return (
         <div className='BookListScreen screen'>
             <h2>Book List Screen</h2>
