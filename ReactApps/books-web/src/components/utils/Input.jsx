@@ -43,7 +43,7 @@ import { useState } from 'react';
 }
 
 export const LabeledInput = ({ id, value = '', onChange,  //most import required elements
-    type = 'text', label = id, placeHolder = label, //ui structure  
+    type = 'text', label = id, placeholder = label, //ui structure  
     errorMessage = "", //error display
     inputClassName = "", labelClassName = "", groupClassName = "", //optional styling
     //input control
@@ -65,7 +65,7 @@ export const LabeledInput = ({ id, value = '', onChange,  //most import required
         <div className={`form-group ${groupClassName}`}>
             <label className={labelClassName} htmlFor={id}>{label}</label>
 
-            {inputBuilder({id,value:innerValue,onChange:handleChange,className:`form-control ${inputClassName}`,type,placeHolder})}
+            {inputBuilder({id,value:innerValue,onChange:handleChange,className:`form-control ${inputClassName}`,type,placeholder})}
 
 
 

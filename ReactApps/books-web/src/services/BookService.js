@@ -1,7 +1,29 @@
 import _books from '../data/books.json'
-import { isNumber, maxLength, min, required } from './validation';
+import { isNumber, maxLength, min, max, minLength, required, throwOnError, validate } from './validation';
 
 const key='booksdb'
+
+
+const _knownAuthorList=["Mahatma Gandhi", "John Grisham", "Alexandre Dumas", "Vivek Dutta Mishra"]
+
+const isKnownAuthor =()=> (value,key,book)=> throwOnError(
+    !_knownAuthorList.find(a=>a.toLowerCase()===value.toLowerCase()),
+    `Unknown Author`, key, book    
+)
+
+
+export const bookModel={
+   // id: {type:'string'},
+    title: {validators:[required()]},
+    author: {validators:[required(), isKnownAuthor()]},
+    price: {validators: [required(), isNumber(), min(0)]},
+    rating: {validators: [required(), isNumber(), min(1), max(5)]},
+    cover : {validators: [required()]},
+    description:{ validators:[required(), minLength(50), maxLength(2500)]}
+
+}
+
+
 
 export class BookService{
     constructor(){
@@ -34,26 +56,29 @@ export class BookService{
 
     getAllBooks(){return this.books;}
 
-    validate(book){
-        required()(book.title,'title',book)
-        required()(book.author,'author',book)
-        isNumber()(book.price,'price',book)
-        min(0)(book.price,'price',book)
-        max(5000)(book.price, 'price', book)
-        min(1)(book.rating, 'rating',book)
-        max(5)(book.rating, 'rating', book)
-        required()(book.description, 'description', book )
-        minLength(50)(book.description, 'description',book)
-        maxLength(50)(book.description, 'description', book)
+    // validate(book){
+    //     required()(book.title,'title',book)
+    //     required()(book.author,'author',book)
+    //     isNumber()(book.price,'price',book)
+    //     min(0)(book.price,'price',book)
+    //     max(5000)(book.price, 'price', book)
+    //     min(1)(book.rating, 'rating',book)
+    //     max(5)(book.rating, 'rating', book)
+    //     required()(book.description, 'description', book )
+    //     minLength(50)(book.description, 'description',book)
+    //     maxLength(2500)(book.description, 'description', book)
         
-    }
+    // }
 
     addBook(book){
         if(!book.id)
             book.id=book.title.toLowerCase().split(' ').join('-')
 
         book.id=book.id.trim();
-        this.validate(book)
+
+        //this.validate(book)
+        validate(book, bookModel)
+        
         this.books.push(book)
         this.save()
     }

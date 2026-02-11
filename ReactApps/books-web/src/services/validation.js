@@ -1,11 +1,22 @@
 
 export class ValidationError extends Error{
-    constructor(errorMessage, context, key){
+    constructor(errorMessage, key, context){
         super(errorMessage);
         this.context=context;
-        this.key=this.key;
+        this.key=key;
     }
 }
+
+export class ValidationModel{
+    constructor(dataType, defaultValue, ...validations){
+        this.dataType=dataType,
+        this.defaultValue=defaultValue,
+        this.validations=validations;
+    }
+}
+
+
+
 
 export const throwOnError= (errorCondition, errorMessage, key, context)=>{
     if(errorCondition){
@@ -34,6 +45,70 @@ export const minLength = (min,errorMessage)=>(value,key,context)=>{
 export const maxLength = (max,errorMessage)=>(value,key,context)=>{
     throwOnError(value.length>max,  errorMessage|| `${key} should not be more than ${max}`, key,context)
 }
+
+
+// final validator
+
+function validateKey (obj, model, key){
+
+    let {validators} = model[key]
+    if(!validators)
+        return;
+
+    const valueToValidate=obj[key];
+    for(const validator of validators){
+        try{
+
+            validator(valueToValidate, key, obj)
+        }catch(error){
+            return {[key]: error.message};
+        }
+    }
+}
+
+export class ValidationSummaryError extends Error{
+    constructor(info){
+        super("Validation Error")
+        this.info=info;
+    }
+}
+
+
+export function validate( obj, model, key){
+
+    let errors={}
+    let errorCount=0;
+
+    if(key){
+        let error= validateKey(obj,model,key)
+        if(error){
+            throw new ValidationSummaryError({
+                count:1,obj, model,
+                errors:{[key]: error[key]}
+            })
+        }
+    }
+    
+    
+    for(let key in model){
+        let error = validateKey(obj, model, key)
+        if(error){
+           // console.log('validation error detected',error)
+            errorCount++;
+            errors[key]=error[key]
+        }       
+    }
+
+    if(errorCount){
+        throw new ValidationSummaryError( {
+            count:errorCount, 
+            obj, 
+            model, 
+            errors});
+    }
+    //no new is good news
+}
+
 
 
 
