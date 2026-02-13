@@ -1,0 +1,16 @@
+{
+  "name": "json-book-api-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "faq.js",
+  "scripts": {
+    "start":"json-server db.json -p 4000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.5"
+  }
+}

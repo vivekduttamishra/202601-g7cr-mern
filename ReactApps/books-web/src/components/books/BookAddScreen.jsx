@@ -34,13 +34,13 @@ const BookAddScreen = ({ id }) => {
 
         //console.log('book updated',newBook); 
 
-        try{
-            console.log('validating')
-            validate(newBook, bookModel)
-        }catch(err){
-            setErrors(err.info.errors)
-            return
-        }
+        // try{
+        //     console.log('validating')
+        //     validate(newBook, bookModel)
+        // }catch(err){
+        //     setErrors(err.info.errors)
+        //     return
+        // }
         
         //now update the state to make this data final
         setBook(newBook) 
@@ -72,11 +72,11 @@ const BookAddScreen = ({ id }) => {
 
     const [errors,setErrors]=useState({})
 
-    const handleFormSubmit =(e)=>{
+    const handleFormSubmit =async(e)=>{
         e.preventDefault();
 
         try{
-            bookService.addBook(book)
+            await bookService.addBook(book)
             navigate('/books')
         }catch(err){
            // console.log('error.info',err.info)
