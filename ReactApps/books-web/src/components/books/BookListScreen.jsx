@@ -4,42 +4,44 @@ import {useParams, useLocation, Link} from 'react-router-dom'
 import withConditionalVisibility from '../../hocs/withConditionalVisibility';
 import bookService from '../../services/BookService';
 import BookCard from './BookCard';
+import Loading from '../utils/Loading';
+import ErrorView from '../utils/ErrorView';
 
 
 
 const BookListScreen = () => {
     //component logic here
+
     let [books,setBooks]=useState(null);
-    let [status,setStatus]=useState('')
+    let [status,setStatus]=useState('loading')
+    let [error,setError] = useState(null)
 
     useEffect(()=>{
        
-        async function getAllBooks(){
-            try{
             setStatus('loading')
-            let books=await bookService.getAllBooks()
-            setBooks(books);
-            setStatus('done')
-            }catch(error){
-                setStatus('error:'+error.message)
-            }
-        }
-
-        getAllBooks();
-
-
-    },[]);
+            setError(null)
+            bookService
+            .getAllBooks()
+            .then(books=>{
+                setBooks(books);
+                setStatus('done')
+                setError(null)
+            })
+            .catch(error=>{
+                setStatus('error')
+                setError(error)
+            })
+        },[]);
 
     if(status==='loading')
-        return <h3>loading...</h3>
-    else if (status.startsWith('error'))
-        return <h3 className='text-danger'>{status.split(':').pop()}</h3>
+        return <Loading/>
+    else if (status==='error')
+        return <ErrorView error={error}/>
     
-    if(status==='')
-        return null;
 
 
-    //let books = bookService.getAllBooks();
+
+    //Actual component rendering in case of success
     return (
         <div className='BookListScreen screen'>
             <h2>Book List Screen</h2>

@@ -31,7 +31,7 @@ export const bookModel = {
 export class BookService {
 
     async getAllBooks() {
-
+        await delay(2000);
         let response = await axios.get(baseUrl)
 
         return response.data;
@@ -59,7 +59,7 @@ export class BookService {
     }
 
     async getBookById(id) {
-
+        await delay(2000)
         let response = await axios.get(`${baseUrl}/${id}`)
         console.log('response', response);
 
