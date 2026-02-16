@@ -1,0 +1,33 @@
+.navBar a, .navBar button{
+
+    border:0px;
+    background-color: transparent;
+    margin-right:5px;
+    text-decoration: none;
+    color:black;
+    font-size:1.2em;
+    font-weight: 300;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+
+}
+
+.navBar a:hover, .navBar button:hover{
+    background-color: aquamarine;
+    border-radius: 20%;
+    padding:5px;
+}
+
+.Header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+
+    .clock{
+        font-weight: bolder;
+        font-family: 'Courier New', Courier, monospace;
+        font-size:1.2em;
+    }
+}
