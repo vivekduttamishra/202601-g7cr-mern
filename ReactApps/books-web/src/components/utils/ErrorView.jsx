@@ -45,17 +45,17 @@ const ErrorView = ({error, errorMap}) => {
     } else
         errorMap=defaultErrorMap
 
-    let ErrorView=DefaultError
+    let SelectedErrorView=DefaultError
 
     if(errorMap[error.status])
-        ErrorView=errorMap[error.status]
+        SelectedErrorView=errorMap[error.status]
     else if(errorMap[error.message])
-        ErrorView=errorMap[error.message]
+        SelectedErrorView=errorMap[error.message]
 
     
     return (
         <div className='ErrorView text-danger'>
-            <ErrorView error={error} />
+            <SelectedErrorView error={error} />
         </div>
     );
 };

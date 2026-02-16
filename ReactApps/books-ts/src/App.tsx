@@ -1,4 +1,5 @@
 import './App.css'
+import BookManagementScreen from './components/books/BookManagementScreen'
 import Header from './components/Header'
 import type { NavParameter } from './types/NavParameter'
 
@@ -35,6 +36,7 @@ function App() {
   return (
     <div className='App'>
       <Header title="World of Books" nav={mainMenu }/>
+      <BookManagementScreen/>
     </div>
   )
 }
