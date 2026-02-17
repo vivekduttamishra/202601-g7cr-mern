@@ -5,44 +5,50 @@ import BookManagementScreen from './components/books/BookManagementScreen'
 import Header from './components/Header'
 import UserLoginScreen from './components/users/UserLoginScreen';
 import NotFoundScreen from './components/utils/NotFoundScreen';
+import { useUserProvider } from './providers/UserProvider';
 import type { NavParameter } from './types/NavParameter'
 import {Routes,Route} from 'react-router-dom';
 
 
-const mainMenu:NavParameter[]=[
-  {
-    text:"Home",
-    onClick:"/"
-  },
-  {
-    text:"Books",
-    onClick:"/books"
-  },
-  {
-    text:"Authors",
-    onClick:"/authors"
-  },
-  {
-    text:"Login",
-    onClick:"/user/login"
-  },
-  {
-    text:"Register",
-    onClick:"/user/register"
-  },
-  // {
-  //   text:"Register",
-    
-  // },
-  {
-    text:"Logout",
-    onClick: ()=>console.log('Loggin Out')
-  },
-]
 
 
 function App() {
- 
+
+  const {logout} = useUserProvider();
+  
+  const mainMenu:NavParameter[]=[
+    {
+      text:"Home",
+      onClick:"/"
+    },
+    {
+      text:"Books",
+      onClick:"/books"
+    },
+    {
+      text:"Authors",
+      onClick:"/authors"
+    },
+    {
+      text:"Login",
+      linkVisibility:"unauthenticated",
+      onClick:"/user/login"
+    },
+    {
+      text:"Register",
+      linkVisibility:"unauthenticated",
+      onClick:"/user/register"
+    },
+    // {
+    //   text:"Register",
+      
+    // },
+    {
+      text:"Logout",
+      linkVisibility:"authenticated",
+      onClick:logout
+    },
+  ]
   return (
     <div className='App'>
       <Header title="World of Books" nav={mainMenu }/>

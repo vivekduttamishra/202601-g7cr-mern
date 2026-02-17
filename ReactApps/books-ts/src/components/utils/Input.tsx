@@ -11,14 +11,14 @@ export interface LabeledInputProps{
     id:string,
     value:string,
     onChange:(value:string, id:string, eventTarget: HTMLInputElement)=>void,
-    type:string,
-    inputClassName:string,
-    labelClassName:string,
-    groupClassName:string,
-    placeholder:string,
-    errorMessage:string,
-    label:string,
-    inputBuilder:Function
+    type?:string,
+    inputClassName?:string,
+    labelClassName?:string,
+    groupClassName?:string,
+    placeholder?:string,
+    errorMessage?:string,
+    label?:string,
+    inputBuilder?:Function
 }
 
 interface InputProps{
@@ -45,7 +45,8 @@ export const LabeledInput = ({ id, value = '', onChange,  //most import required
 
     const handleChange=(event:any)=>{
         const {value, id} = event.target;
-        setInnerValue({...innerValue, [id]:value})
+               
+        setInnerValue(value)
         if(onChange)
             onChange(value, id, event.target);
 
