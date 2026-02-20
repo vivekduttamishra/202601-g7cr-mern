@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Arundhati Roy",
+    "bio": "Indian author and political activist, best known for her debut novel 'The God of Small Things', which won the Man Booker Prize in 1997. She is also known for her non-fiction writings on social and environmental issues.",
+    "tags": ["literary-fiction", "activist", "booker-prize", "essayist"],
+    "social": {},
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Arundhati_Roy_W.jpg/400px-Arundhati_Roy_W.jpg"
+  },
+  {
+    "name": "Salman Rushdie",
+    "bio": "British-Indian novelist and essayist, whose work often combines magical realism with historical fiction. His second novel, 'Midnight's Children', won the Booker Prize in 1981.",
+    "tags": ["magical-realism", "booker-prize", "knighted", "historical-fiction"],
+    "social": {
+      "twitter": "https://twitter.com/SalmanRushdie",
+      "website": "https://www.salmanrushdie.com"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Salman_Rushdie_2012.jpg/400px-Salman_Rushdie_2012.jpg"
+  },
+  {
+    "name": "Aravind Adiga",
+    "bio": "Indian writer and journalist. His debut novel, 'The White Tiger', won the 2008 Man Booker Prize. His work often deals with the class struggle in contemporary India.",
+    "tags": ["literary-fiction", "booker-prize", "journalist", "satire"],
+    "social": {},
+    "image": "https://images.gr-assets.com/authors/1255047432p8/119893.jpg"
+  },
+  {
+    "name": "Amish Tripathi",
+    "bio": "Indian author and diplomat, known for his 'Shiva Trilogy' and 'Ram Chandra Series'. He is often referred to as 'India's Tolkien' for his mythological retellings.",
+    "tags": ["mythology", "fantasy", "bestseller", "historical-fiction"],
+    "social": {
+      "twitter": "https://twitter.com/authoramish",
+      "website": "https://www.authoramish.com",
+      "instagram": "https://www.instagram.com/authoramish"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Amish_Tripathi_at_lit_fest.jpg/400px-Amish_Tripathi_at_lit_fest.jpg"
+  },
+  {
+    "name": "Chetan Bhagat",
+    "bio": "Indian author, columnist, and YouTuber. He is known for his English-language dramedy novels about young urban middle-class Indians, many of which have been adapted into Bollywood films.",
+    "tags": ["romance", "contemporary", "bestseller", "youth-fiction"],
+    "social": {
+      "twitter": "https://twitter.com/chetan_bhagat",
+      "website": "https://www.chetanbhagat.com",
+      "instagram": "https://www.instagram.com/chetanbhagat"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Chetan_Bhagat_at_St._Xaviers_College%2C_Mumbai.jpg/400px-Chetan_Bhagat_at_St._Xaviers_College%2C_Mumbai.jpg"
+  },
+  {
+    "name": "Chitra Banerjee Divakaruni",
+    "bio": "Indian-American author and poet. Her themes often include the Indian experience, contemporary America, women, immigration, history, and mythology.",
+    "tags": ["mythology", "women-centric", "diaspora", "historical-fiction"],
+    "social": {
+      "twitter": "https://twitter.com/cdivakaruni",
+      "website": "https://www.chitradivakaruni.com",
+      "instagram": "https://www.instagram.com/divakarunichitra"
+    },
+    "image": "https://images.gr-assets.com/authors/1632766343p8/51589.jpg"
+  },
+  {
+    "name": "Vikram Seth",
+    "bio": "Indian novelist and poet. He is best known for his epic novel 'A Suitable Boy'. He has written several novels and poetry collections and has received the Padma Shri and Sahitya Akademi Award.",
+    "tags": ["literary-fiction", "poetry", "epic", "padma-shri"],
+    "social": {},
+    "image": "https://images.gr-assets.com/authors/1651515321p8/28345.jpg"
+  },
+  {
+    "name": "R.K. Narayan",
+    "bio": "One of the finest Indian authors of his generation writing in English. He is best known for his works set in the fictional South Indian town of Malgudi.",
+    "tags": ["classic", "malgudi", "literary-fiction", "padma-vibhushan"],
+    "social": {},
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/R_K_Narayan_2000.jpg/400px-R_K_Narayan_2000.jpg"
+  },
+  {
+    "name": "Amitav Ghosh",
+    "bio": "Indian writer known for his English language historical fiction. He won the 54th Jnanpith award in 2018, India's highest literary honor.",
+    "tags": ["historical-fiction", "anthropology", "jnanpith-award", "ibis-trilogy"],
+    "social": {
+      "website": "https://www.amitavghosh.com",
+      "twitter": "https://twitter.com/GhoshAmitav"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Amitav_Ghosh_2015.jpg/400px-Amitav_Ghosh_2015.jpg"
+  },
+  {
+    "name": "Ashwin Sanghi",
+    "bio": "Indian writer in the fiction-thriller genre. He is the author of three best-selling novels: 'The Rozabal Line', 'Chanakya's Chant', and 'The Krishna Key'.",
+    "tags": ["thriller", "mythology", "history", "bestseller"],
+    "social": {
+      "twitter": "https://twitter.com/ashwinsanghi",
+      "website": "https://www.sanghi.in",
+      "instagram": "https://www.instagram.com/ashwin.sanghi"
+    },
+    "image": "https://images.gr-assets.com/authors/1359616334p8/2926941.jpg"
+  },
+  {
+    "name": "A.P.J. Abdul Kalam",
+    "bio": "Indian aerospace scientist and statesman who served as the 11th President of India. He wrote many books, including the autobiography 'Wings of Fire'.",
+    "tags": ["science", "biography", "inspiration", "president-of-india"],
+    "social": {
+      "website": "http://www.abdulkalam.com"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/A._P._J._Abdul_Kalam.jpg/400px-A._P._J._Abdul_Kalam.jpg"
+  },
+  {
+    "name": "Khushwant Singh",
+    "bio": "Indian author, lawyer, diplomat, journalist and politician. His experience in the 1947 Partition of India inspired his well-known novel, 'Train to Pakistan'.",
+    "tags": ["classic", "history", "satire", "journalism"],
+    "social": {},
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Khushwant_Singh_-_New_Delhi_1993-01-22.jpg/400px-Khushwant_Singh_-_New_Delhi_1993-01-22.jpg"
+  },
+  {
+    "name": "Jeffrey Archer",
+    "bio": "English novelist and former politician. He is one of the world's best-selling authors, known for his 'Clifton Chronicles' and 'Kane and Abel'.",
+    "tags": ["thriller", "mystery", "bestseller", "uk-author"],
+    "social": {
+      "twitter": "https://twitter.com/Jeffrey_Archer",
+      "website": "https://www.jeffreyarcher.com"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Jeffrey_Archer_2014.jpg/400px-Jeffrey_Archer_2014.jpg"
+  },
+  {
+    "name": "J.K. Rowling",
+    "bio": "British author and philanthropist. She wrote 'Harry Potter', a seven-volume children's fantasy series published from 1997 to 2007.",
+    "tags": ["fantasy", "young-adult", "magic", "bestseller"],
+    "social": {
+      "twitter": "https://twitter.com/jk_rowling",
+      "website": "https://www.jkrowling.com"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/400px-J._K._Rowling_2010.jpg"
+  },
+  {
+    "name": "Agatha Christie",
+    "bio": "English writer known for her sixty-six detective novels and fourteen short story collections, particularly those revolving around fictional detectives Hercule Poirot and Miss Marple.",
+    "tags": ["mystery", "crime", "classic", "queen-of-crime"],
+    "social": {
+      "website": "https://www.agathachristie.com",
+      "twitter": "https://twitter.com/agathachristie"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Agatha_Christie.png/400px-Agatha_Christie.png"
+  },
+  {
+    "name": "Dan Brown",
+    "bio": "American author of thriller novels, including the Robert Langdon stories 'Angels & Demons', 'The Da Vinci Code', and 'Inferno'.",
+    "tags": ["thriller", "mystery", "conspiracy", "bestseller"],
+    "social": {
+      "twitter": "https://twitter.com/AuthorDanBrown",
+      "website": "https://danbrown.com"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Dan_Brown_November_2015.jpg/400px-Dan_Brown_November_2015.jpg"
+  },
+  {
+    "name": "Sidney Sheldon",
+    "bio": "American writer and producer. He was prominent in the 1930s, first working on Broadway plays and then in motion pictures.",
+    "tags": ["thriller", "suspense", "crime", "bestseller"],
+    "social": {
+      "website": "https://www.sidneysheldon.com"
+    },
+    "image": "https://images.gr-assets.com/authors/1206562061p8/9076.jpg"
+  },
+  {
+    "name": "Vivek Dutta Mishra",
+    "bio": "Indian author known for his 'The Lost Epic' series, which includes 'The Accursed God' and 'The Shadows of Kali'. He is also a software architect and technology trainer.",
+    "tags": ["mythology", "epic-retelling", "indian-author", "fantasy"],
+    "social": {
+      "twitter": "https://twitter.com/vivekdmishra",
+      "instagram": "https://www.instagram.com/vivekduttamishra",
+      "website": "https://thelostepic.com"
+    },
+    "image": "https://images.gr-assets.com/authors/1583304566p8/19931108.jpg"
+  }
+]

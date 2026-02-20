@@ -200,7 +200,7 @@ const basicInfo = { _id: 0, title: 1, author: 1, price: 1 }
 //find all independent books that are not part of a series
 
 // db.books.find({
-//     series: null  //either value is null or key is null
+//     series: null  //either value is null or key is absent
 // },{
 //     ...basicInfo, series:1
 // })
@@ -210,8 +210,9 @@ const basicInfo = { _id: 0, title: 1, author: 1, price: 1 }
 // but not the first part
 // db.books.find({
 
-//     series: { $exists: true },
-//     seriesIndex: {$ne:1}
+//     series: { $exists: true },  // series should exist
+//     //and
+//     seriesIndex: {$ne:1}  // seriesIndex != 1
     
 // },
 // {
@@ -224,12 +225,45 @@ const basicInfo = { _id: 0, title: 1, author: 1, price: 1 }
 
 //find all poetry books.
 
+// db.books.find({
+
+//     categories: 'poetry'
+
+// },{
+//     ...basicInfo, categories:true
+// })
+
+//find all books reviewed by Sanjev
+
+// db.books.find({
+//     "reviews.reviewer":"Sanjeev"
+// },{
+//     ...basicInfo,
+//     reviews:true
+// })
+
+
+//find books rated 5 by sanjay
+
+// db.books.find({
+//     "reviews.reviewer":"Sanjay", //one of the review should be sanjay
+//     //and
+//     "reviews.rating":5 //one of the rating should be 5
+// },{
+//     ...basicInfo,
+//     reviews:true
+// })
+
+//correct code
+
 db.books.find({
-
-    categories: 'poetry'
-
-},{
-    ...basicInfo, categories:true
+    reviews: {
+        //for same element
+        $elemMatch:{
+            reviewer:"Sanjay",
+            rating:4
+        }
+    }
+}, {
+    title:true, reviews:true, _id:false
 })
-
-
