@@ -1,0 +1,2 @@
+This is a very small content and can be read synchronously
+However a syncrhonous read is never really recommended.

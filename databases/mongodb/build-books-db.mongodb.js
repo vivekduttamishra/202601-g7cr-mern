@@ -1,0 +1,3894 @@
+
+//change the database name here
+
+
+
+use('booksdb')
+
+
+const addAuthors = () => {
+    const authors = [
+        {
+            "name": "Arundhati Roy",
+            "bio": "Indian author and political activist, best known for her debut novel 'The God of Small Things', which won the Man Booker Prize in 1997. She is also known for her non-fiction writings on social and environmental issues.",
+            "tags": ["literary-fiction", "activist", "booker-prize", "essayist"],
+            "social": {},
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Arundhati_Roy_W.jpg/400px-Arundhati_Roy_W.jpg"
+        },
+        {
+            "name": "Salman Rushdie",
+            "bio": "British-Indian novelist and essayist, whose work often combines magical realism with historical fiction. His second novel, 'Midnight's Children', won the Booker Prize in 1981.",
+            "tags": ["magical-realism", "booker-prize", "knighted", "historical-fiction"],
+            "social": {
+                "twitter": "https://twitter.com/SalmanRushdie",
+                "website": "https://www.salmanrushdie.com"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Salman_Rushdie_2012.jpg/400px-Salman_Rushdie_2012.jpg"
+        },
+        {
+            "name": "Aravind Adiga",
+            "bio": "Indian writer and journalist. His debut novel, 'The White Tiger', won the 2008 Man Booker Prize. His work often deals with the class struggle in contemporary India.",
+            "tags": ["literary-fiction", "booker-prize", "journalist", "satire"],
+            "social": {},
+            "image": "https://images.gr-assets.com/authors/1255047432p8/119893.jpg"
+        },
+        {
+            "name": "Amish Tripathi",
+            "bio": "Indian author and diplomat, known for his 'Shiva Trilogy' and 'Ram Chandra Series'. He is often referred to as 'India's Tolkien' for his mythological retellings.",
+            "tags": ["mythology", "fantasy", "bestseller", "historical-fiction"],
+            "social": {
+                "twitter": "https://twitter.com/authoramish",
+                "website": "https://www.authoramish.com",
+                "instagram": "https://www.instagram.com/authoramish"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Amish_Tripathi_at_lit_fest.jpg/400px-Amish_Tripathi_at_lit_fest.jpg"
+        },
+        {
+            "name": "Chetan Bhagat",
+            "bio": "Indian author, columnist, and YouTuber. He is known for his English-language dramedy novels about young urban middle-class Indians, many of which have been adapted into Bollywood films.",
+            "tags": ["romance", "contemporary", "bestseller", "youth-fiction"],
+            "social": {
+                "twitter": "https://twitter.com/chetan_bhagat",
+                "website": "https://www.chetanbhagat.com",
+                "instagram": "https://www.instagram.com/chetanbhagat"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Chetan_Bhagat_at_St._Xaviers_College%2C_Mumbai.jpg/400px-Chetan_Bhagat_at_St._Xaviers_College%2C_Mumbai.jpg"
+        },
+        {
+            "name": "Chitra Banerjee Divakaruni",
+            "bio": "Indian-American author and poet. Her themes often include the Indian experience, contemporary America, women, immigration, history, and mythology.",
+            "tags": ["mythology", "women-centric", "diaspora", "historical-fiction"],
+            "social": {
+                "twitter": "https://twitter.com/cdivakaruni",
+                "website": "https://www.chitradivakaruni.com",
+                "instagram": "https://www.instagram.com/divakarunichitra"
+            },
+            "image": "https://images.gr-assets.com/authors/1632766343p8/51589.jpg"
+        },
+        {
+            "name": "Vikram Seth",
+            "bio": "Indian novelist and poet. He is best known for his epic novel 'A Suitable Boy'. He has written several novels and poetry collections and has received the Padma Shri and Sahitya Akademi Award.",
+            "tags": ["literary-fiction", "poetry", "epic", "padma-shri"],
+            "social": {},
+            "image": "https://images.gr-assets.com/authors/1651515321p8/28345.jpg"
+        },
+        {
+            "name": "R.K. Narayan",
+            "bio": "One of the finest Indian authors of his generation writing in English. He is best known for his works set in the fictional South Indian town of Malgudi.",
+            "tags": ["classic", "malgudi", "literary-fiction", "padma-vibhushan"],
+            "social": {},
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/R_K_Narayan_2000.jpg/400px-R_K_Narayan_2000.jpg"
+        },
+        {
+            "name": "Amitav Ghosh",
+            "bio": "Indian writer known for his English language historical fiction. He won the 54th Jnanpith award in 2018, India's highest literary honor.",
+            "tags": ["historical-fiction", "anthropology", "jnanpith-award", "ibis-trilogy"],
+            "social": {
+                "website": "https://www.amitavghosh.com",
+                "twitter": "https://twitter.com/GhoshAmitav"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Amitav_Ghosh_2015.jpg/400px-Amitav_Ghosh_2015.jpg"
+        },
+        {
+            "name": "Ashwin Sanghi",
+            "bio": "Indian writer in the fiction-thriller genre. He is the author of three best-selling novels: 'The Rozabal Line', 'Chanakya's Chant', and 'The Krishna Key'.",
+            "tags": ["thriller", "mythology", "history", "bestseller"],
+            "social": {
+                "twitter": "https://twitter.com/ashwinsanghi",
+                "website": "https://www.sanghi.in",
+                "instagram": "https://www.instagram.com/ashwin.sanghi"
+            },
+            "image": "https://images.gr-assets.com/authors/1359616334p8/2926941.jpg"
+        },
+        {
+            "name": "A.P.J. Abdul Kalam",
+            "bio": "Indian aerospace scientist and statesman who served as the 11th President of India. He wrote many books, including the autobiography 'Wings of Fire'.",
+            "tags": ["science", "biography", "inspiration", "president-of-india"],
+            "social": {
+                "website": "http://www.abdulkalam.com"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/A._P._J._Abdul_Kalam.jpg/400px-A._P._J._Abdul_Kalam.jpg"
+        },
+        {
+            "name": "Khushwant Singh",
+            "bio": "Indian author, lawyer, diplomat, journalist and politician. His experience in the 1947 Partition of India inspired his well-known novel, 'Train to Pakistan'.",
+            "tags": ["classic", "history", "satire", "journalism"],
+            "social": {},
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Khushwant_Singh_-_New_Delhi_1993-01-22.jpg/400px-Khushwant_Singh_-_New_Delhi_1993-01-22.jpg"
+        },
+        {
+            "name": "Jeffrey Archer",
+            "bio": "English novelist and former politician. He is one of the world's best-selling authors, known for his 'Clifton Chronicles' and 'Kane and Abel'.",
+            "tags": ["thriller", "mystery", "bestseller", "uk-author"],
+            "social": {
+                "twitter": "https://twitter.com/Jeffrey_Archer",
+                "website": "https://www.jeffreyarcher.com"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Jeffrey_Archer_2014.jpg/400px-Jeffrey_Archer_2014.jpg"
+        },
+        {
+            "name": "J.K. Rowling",
+            "bio": "British author and philanthropist. She wrote 'Harry Potter', a seven-volume children's fantasy series published from 1997 to 2007.",
+            "tags": ["fantasy", "young-adult", "magic", "bestseller"],
+            "social": {
+                "twitter": "https://twitter.com/jk_rowling",
+                "website": "https://www.jkrowling.com"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/400px-J._K._Rowling_2010.jpg"
+        },
+        {
+            "name": "Agatha Christie",
+            "bio": "English writer known for her sixty-six detective novels and fourteen short story collections, particularly those revolving around fictional detectives Hercule Poirot and Miss Marple.",
+            "tags": ["mystery", "crime", "classic", "queen-of-crime"],
+            "social": {
+                "website": "https://www.agathachristie.com",
+                "twitter": "https://twitter.com/agathachristie"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Agatha_Christie.png/400px-Agatha_Christie.png"
+        },
+        {
+            "name": "Dan Brown",
+            "bio": "American author of thriller novels, including the Robert Langdon stories 'Angels & Demons', 'The Da Vinci Code', and 'Inferno'.",
+            "tags": ["thriller", "mystery", "conspiracy", "bestseller"],
+            "social": {
+                "twitter": "https://twitter.com/AuthorDanBrown",
+                "website": "https://danbrown.com"
+            },
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Dan_Brown_November_2015.jpg/400px-Dan_Brown_November_2015.jpg"
+        },
+        {
+            "name": "Sidney Sheldon",
+            "bio": "American writer and producer. He was prominent in the 1930s, first working on Broadway plays and then in motion pictures.",
+            "tags": ["thriller", "suspense", "crime", "bestseller"],
+            "social": {
+                "website": "https://www.sidneysheldon.com"
+            },
+            "image": "https://images.gr-assets.com/authors/1206562061p8/9076.jpg"
+        },
+        {
+            "name": "Vivek Dutta Mishra",
+            "bio": "Indian author known for his 'The Lost Epic' series, which includes 'The Accursed God' and 'The Shadows of Kali'. He is also a software architect and technology trainer.",
+            "tags": ["mythology", "epic-retelling", "indian-author", "fantasy"],
+            "social": {
+                "twitter": "https://twitter.com/vivekdmishra",
+                "instagram": "https://www.instagram.com/vivekduttamishra",
+                "website": "https://thelostepic.com"
+            },
+            "image": "https://images.gr-assets.com/authors/1583304566p8/19931108.jpg"
+        }
+    ]
+
+    return db.authors.insertMany(authors.map(a => {
+        a.id = a.name.toLowerCase().split(' ').join('-')
+        return a
+    }))
+}
+
+const addBooks = () => {
+    const books = [
+        {
+            "title": "The God of Small Things",
+            "author": "Arundhati Roy",
+            "cover": "https://m.media-amazon.com/images/I/81WEuClqKBL._SY466_.jpg",
+            "price": 399,
+            "rating": 4.5,
+            "description": "Booker Prize winner exploring forbidden love and family secrets in Kerala",
+            "id": "the-god-of-small-things",
+            "tags": [
+                "novel",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "booker-prize",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Adrian Roy",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Thomas Mishra",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Arjun Reddy",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Pranav Menon",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Rohit Mishra",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The humour was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Rhea Singh",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Avni Sinha",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Sahil Sharma",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Noah Mehta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The characters was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Diya Nair",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Pranav Rao",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "Midnight's Children",
+            "author": "Salman Rushdie",
+            "cover": "https://m.media-amazon.com/images/I/81KJXPqFpTL._SY466_.jpg",
+            "price": 499,
+            "rating": 4.4,
+            "description": "Magical realism masterpiece about children born at India's independence",
+            "id": "midnights-children",
+            "tags": [
+                "popular",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "top-rated",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Kavya Bhat",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The plot twists was particularly notable.",
+                    "rating": 2.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Priya Reddy",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Aarav Agarwal",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Kavya Mehta",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Arjun Bhat",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Isha Singh",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Sara Gupta",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Rohit Sharma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Alice Singh",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The mystery was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Nikhil Sharma",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Sofia Jain",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Noah Saxena",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The characters was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "The White Tiger",
+            "author": "Aravind Adiga",
+            "cover": "https://m.media-amazon.com/images/I/71X4dVyPTaL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.2,
+            "description": "Man Booker Prize winner critiquing India's class divide with dark humor",
+            "id": "the-white-tiger",
+            "tags": [
+                "must-read",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "booker-prize",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Thomas Bhat",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Sofia Chatterjee",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Neha Shetty",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The dialogue was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rohit Bose",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The world-building was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Dev Banerjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Dev Patel",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "James Saxena",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Liam Iyer",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Ben Bose",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Rhea Banerjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The pacing was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Sofia Patel",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Shreya Shetty",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The world-building was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "The Immortals of Meluha",
+            "author": "Amish Tripathi",
+            "cover": "https://m.media-amazon.com/images/I/91aVuFZhfTL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.3,
+            "description": "First book of Shiva Trilogy reimagining Lord Shiva as a mortal hero",
+            "id": "the-immortals-of-meluha",
+            "tags": [
+                "must-read",
+                "mythology",
+                "indian",
+                "historical-fiction",
+                "top-rated",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Meera Bose",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Olivia Kapoor",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sahil Saxena",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Elena Shetty",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The emotional impact was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Varun Reddy",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Akash Reddy",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Elena Banerjee",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Elena Bhat",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The world-building was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Thomas Patel",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Daniel Bhat",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Nikhil Verma",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The dialogue was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Varun Menon",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The research was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "2 States: The Story of My Marriage",
+            "author": "Chetan Bhagat",
+            "cover": "https://m.media-amazon.com/images/I/71EyxCKE+1L._SY466_.jpg",
+            "price": 199,
+            "rating": 3.8,
+            "description": "Popular romance about inter-community marriage and cultural differences",
+            "id": "2-states-the-story-of-my-marriage",
+            "tags": [
+                "drama",
+                "bestseller",
+                "indian",
+                "romance",
+                "youth",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Avni Kumar",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Siddharth Verma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The emotional impact was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rohit Jain",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The emotional impact was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Neha Kulkarni",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The writing style was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Isha Iyer",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The world-building was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Gautam Jain",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Kiran Bose",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The characters was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Sara Shetty",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Sahil Verma",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The mystery was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Zoya Roy",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Alice Kulkarni",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Kabir Das",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The characters was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "The Palace of Illusions",
+            "author": "Chitra Banerjee Divakaruni",
+            "cover": "https://m.media-amazon.com/images/I/81r9zIOqPsL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.4,
+            "description": "Mahabharata retelling from Draupadi's perspective",
+            "id": "the-palace-of-illusions",
+            "tags": [
+                "library",
+                "mythology",
+                "indian",
+                "novel",
+                "historical-fiction",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Ananya Sharma",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Alice Nair",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The dialogue was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Elena Kumar",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Saanvi Singh",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kavya Kapoor",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rahul Singh",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The pacing was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Elena Malhotra",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The pacing was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Cara Bose",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Vihaan Mehta",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Ananya Singh",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The theme was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "A Suitable Boy",
+            "author": "Vikram Seth",
+            "cover": "https://m.media-amazon.com/images/I/91gDW7u4O9L._SY466_.jpg",
+            "price": 699,
+            "rating": 4.5,
+            "description": "Epic saga of post-independence India exploring love, family and politics",
+            "id": "a-suitable-boy",
+            "tags": [
+                "must-read",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "paperback",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Neha Mukherjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Nisha Banerjee",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Ben Menon",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Avni Sharma",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Pranav Iyer",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Avni Kulkarni",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Cara Nair",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The characters was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Neha Menon",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Meera Nair",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rhea Roy",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 3.5
+                }
+            ]
+        },
+        {
+            "title": "The Secret of the Nagas",
+            "author": "Amish Tripathi",
+            "cover": "https://m.media-amazon.com/images/I/91ME8lc1h+L._SY466_.jpg",
+            "price": 299,
+            "rating": 4.2,
+            "description": "Second book in Shiva Trilogy continuing the mythological adventure",
+            "id": "the-secret-of-the-nagas",
+            "tags": [
+                "mythology",
+                "indian",
+                "novel",
+                "historical-fiction",
+                "shiva-trilogy",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Dev Banerjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Rhea Sharma",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Neha Mishra",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Elena Banerjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Sneha Kapoor",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Thomas Kumar",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Isha Malhotra",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Rohit Patel",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "James Saxena",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Alice Mehta",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The emotional impact was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rahul Menon",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The humour was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Olivia Verma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "Five Point Someone",
+            "author": "Chetan Bhagat",
+            "cover": "https://m.media-amazon.com/images/I/71VjCnMIiPL._SY466_.jpg",
+            "price": 195,
+            "rating": 3.7,
+            "description": "Story of friendship and academic pressure at IIT Delhi",
+            "id": "five-point-someone",
+            "tags": [
+                "drama",
+                "bestseller",
+                "indian",
+                "romance",
+                "youth",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rahul Saxena",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Maya Banerjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Ananya Mishra",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Cara Menon",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Elena Gupta",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Pranav Verma",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Priya Gupta",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Kavya Joshi",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Maya Bhat",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The emotional impact was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "James Mishra",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Rohit Singh",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The humour was particularly notable.",
+                    "rating": 3.0
+                }
+            ]
+        },
+        {
+            "title": "The Guide",
+            "author": "R.K. Narayan",
+            "cover": "https://m.media-amazon.com/images/I/71zJB-KqVWL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.3,
+            "description": "Sahitya Akademi Award winner about identity and self-discovery",
+            "id": "the-guide",
+            "tags": [
+                "historical",
+                "fiction",
+                "classic",
+                "novel",
+                "indian-literature",
+                "top-rated"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sneha Saxena",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Shreya Mishra",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Gautam Mukherjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Pranav Sharma",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Vihaan Agarwal",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The emotional impact was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Akash Das",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The emotional impact was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Zoya Jain",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Pranav Joshi",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Avni Iyer",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Neha Verma",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Nikhil Malhotra",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The theme was particularly notable.",
+                    "rating": 3.5
+                }
+            ]
+        },
+        {
+            "title": "Sea of Poppies",
+            "author": "Amitav Ghosh",
+            "cover": "https://m.media-amazon.com/images/I/81pn7dCpQSL._SY466_.jpg",
+            "price": 499,
+            "rating": 4.3,
+            "description": "First book of Ibis Trilogy set during the Opium Wars era",
+            "id": "sea-of-poppies",
+            "tags": [
+                "library",
+                "must-read",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Daniel Saxena",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rahul Mehta",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Aditi Verma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Zoya Joshi",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The dialogue was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Dev Patel",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Akash Agarwal",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The mystery was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Daniel Das",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rahul Malhotra",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Adrian Gupta",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Meera Sharma",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The pacing was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "The Krishna Key",
+            "author": "Ashwin Sanghi",
+            "cover": "https://m.media-amazon.com/images/I/81y2YF-SkwL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.1,
+            "description": "Thriller weaving mythology and history around Krishna's secrets",
+            "id": "the-krishna-key",
+            "tags": [
+                "mythology",
+                "indian",
+                "historical-fiction",
+                "epic-retelling",
+                "paperback",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rhea Jain",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Tanvi Das",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Aarav Sharma",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The emotional impact was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Thomas Rao",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Aditi Das",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The theme was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Ananya Das",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Tanvi Bose",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Maya Kapoor",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The characters was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Diya Kulkarni",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Isha Roy",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Olivia Jain",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sneha Mehta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The dialogue was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "The Oath of the Vayuputras",
+            "author": "Amish Tripathi",
+            "cover": "https://m.media-amazon.com/images/I/91-QfmYo6HL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.2,
+            "description": "Epic conclusion to the bestselling Shiva Trilogy",
+            "id": "the-oath-of-the-vayuputras",
+            "tags": [
+                "mythology",
+                "indian",
+                "historical-fiction",
+                "shiva-trilogy",
+                "paperback",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Avni Mukherjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The world-building was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Adrian Sinha",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "James Agarwal",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Tanvi Joshi",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The theme was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Akash Reddy",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Ryan Sharma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Aarav Das",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Gautam Mukherjee",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The characters was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Nisha Bhat",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Rhea Saxena",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Akash Kapoor",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "James Verma",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The writing style was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Chanakya's Chant",
+            "author": "Ashwin Sanghi",
+            "cover": "https://m.media-amazon.com/images/I/81GdoWyy28L._SY466_.jpg",
+            "price": 299,
+            "rating": 4.3,
+            "description": "Parallel narratives connecting ancient Chanakya with modern politics",
+            "id": "chanakyas-chant",
+            "tags": [
+                "library",
+                "mythology",
+                "novel",
+                "indian",
+                "historical-fiction",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Maya Kapoor",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The research was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Sofia Roy",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Cara Saxena",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Sahil Singh",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Maya Kulkarni",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The characters was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Liam Sharma",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "James Mehta",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Noah Mishra",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The theme was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Arjun Kulkarni",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The characters was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Sofia Mukherjee",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Saanvi Patel",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Sneha Iyer",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The mystery was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "The Shadow Lines",
+            "author": "Amitav Ghosh",
+            "cover": "https://m.media-amazon.com/images/I/71yTowWdSZL._SY466_.jpg",
+            "price": 399,
+            "rating": 4.4,
+            "description": "Sahitya Akademi winner exploring memories, borders and identity",
+            "id": "the-shadow-lines",
+            "tags": [
+                "popular",
+                "must-read",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Varun Sharma",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Saanvi Singh",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "James Verma",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Noah Iyer",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Tanvi Iyer",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Neha Banerjee",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Zoya Fernandes",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Dev Joshi",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The humour was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "James Malhotra",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Zoya Singh",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Adrian Chatterjee",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The writing style was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "Wings of Fire",
+            "author": "A.P.J. Abdul Kalam",
+            "cover": "https://m.media-amazon.com/images/I/81v4M0NhJ+L._SY466_.jpg",
+            "price": 199,
+            "rating": 4.7,
+            "description": "Inspiring autobiography of India's Missile Man and former President",
+            "id": "wings-of-fire",
+            "tags": [
+                "popular",
+                "indian",
+                "non-fiction",
+                "science",
+                "inspiring",
+                "biography"
+            ],
+            "reviews": [
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rhea Verma",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Tanvi Mehta",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Sneha Kumar",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Nisha Mishra",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Gautam Mishra",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Priya Saxena",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Akash Patel",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Adrian Bhat",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The world-building was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Olivia Shetty",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Maya Mehta",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sneha Kapoor",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The pacing was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "The Ministry of Utmost Happiness",
+            "author": "Arundhati Roy",
+            "cover": "https://m.media-amazon.com/images/I/71CeuNr36hL._SY466_.jpg",
+            "price": 599,
+            "rating": 4.1,
+            "description": "Powerful novel about love, politics and social justice in modern India",
+            "id": "the-ministry-of-utmost-happiness",
+            "tags": [
+                "popular",
+                "novel",
+                "award-winner",
+                "indian-literature",
+                "literary-fiction",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Olivia Mehta",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Cara Roy",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The theme was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Ben Iyer",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The mystery was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Elena Mishra",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Daniel Joshi",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The emotional impact was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Alice Roy",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Sneha Chatterjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The world-building was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Nikhil Kulkarni",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Nisha Sharma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Elena Mukherjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Olivia Menon",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Diya Chatterjee",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The pacing was particularly notable.",
+                    "rating": 3.5
+                }
+            ]
+        },
+        {
+            "title": "Revolution 2020",
+            "author": "Chetan Bhagat",
+            "cover": "https://m.media-amazon.com/images/I/71tGxFwpUkL._SY466_.jpg",
+            "price": 195,
+            "rating": 3.4,
+            "description": "Story of love, corruption and ambition in contemporary India",
+            "id": "revolution-2020",
+            "tags": [
+                "drama",
+                "bestseller",
+                "indian",
+                "romance",
+                "youth",
+                "contemporary"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "James Shetty",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kavya Verma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The characters was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Mihir Reddy",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Noah Patel",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Hannah Shetty",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Aarav Fernandes",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The world-building was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Kavya Sharma",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 2.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Ben Roy",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The research was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Neha Jain",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The characters was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Kiran Mehta",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Arjun Roy",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The theme was particularly notable.",
+                    "rating": 3.0
+                }
+            ]
+        },
+        {
+            "title": "The Rozabal Line",
+            "author": "Ashwin Sanghi",
+            "cover": "https://m.media-amazon.com/images/I/81FhzHELTvL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.0,
+            "description": "Thriller blending religion, history and conspiracy theories",
+            "id": "the-rozabal-line",
+            "tags": [
+                "library",
+                "mythology",
+                "novel",
+                "indian",
+                "historical-fiction",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Nikhil Reddy",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Ben Kulkarni",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Priya Das",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The plot twists was particularly notable.",
+                    "rating": 2.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Diya Mishra",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Daniel Singh",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The plot twists was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Aditi Agarwal",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Kabir Singh",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Siddharth Gupta",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The writing style was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Alice Saxena",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The humour was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Olivia Iyer",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The research was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Thomas Mukherjee",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The writing style was particularly notable.",
+                    "rating": 3.5
+                }
+            ]
+        },
+        {
+            "title": "Train to Pakistan",
+            "author": "Khushwant Singh",
+            "cover": "https://m.media-amazon.com/images/I/71z0SJNUPBL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.3,
+            "description": "Classic novel set during the partition of India in 1947",
+            "id": "train-to-pakistan",
+            "tags": [
+                "historical",
+                "library",
+                "must-read",
+                "fiction",
+                "classic",
+                "indian-literature"
+            ],
+            "reviews": [
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Daniel Patel",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Adrian Mehta",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Ben Gupta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Zoya Bhat",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Sneha Roy",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The mystery was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Kiran Fernandes",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Siddharth Fernandes",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Kabir Mukherjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Daniel Rao",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Noah Bhat",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Zoya Patel",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The theme was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "Kane and Abel",
+            "author": "Jeffrey Archer",
+            "cover": "https://m.media-amazon.com/images/I/71zQWY8QXUL._SY466_.jpg",
+            "price": 399,
+            "rating": 4.7,
+            "description": "Epic saga spanning decades following two men born on the same day",
+            "id": "kane-and-abel",
+            "tags": [
+                "drama",
+                "fiction",
+                "saga",
+                "international",
+                "novel",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Tanvi Bhat",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Cara Kulkarni",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Priya Mukherjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The emotional impact was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Sara Kumar",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Nisha Jain",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The world-building was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "James Joshi",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Vihaan Sinha",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Siddharth Banerjee",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Sahil Banerjee",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Meera Fernandes",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The theme was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Not a Penny More, Not a Penny Less",
+            "author": "Jeffrey Archer",
+            "cover": "https://m.media-amazon.com/images/I/71YJRy3QEXL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.3,
+            "description": "Four victims of a stock swindle unite for revenge in this debut novel",
+            "id": "not-a-penny-more-not-a-penny-less",
+            "tags": [
+                "drama",
+                "fiction",
+                "saga",
+                "international",
+                "paperback",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rohit Nair",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The writing style was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Aarav Rao",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Adrian Verma",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Rohit Mukherjee",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Isha Kulkarni",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Rohit Mehta",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Sneha Banerjee",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Diya Das",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Noah Das",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Priya Rao",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Ben Mukherjee",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Priya Menon",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The ending was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "A Prisoner of Birth",
+            "author": "Jeffrey Archer",
+            "cover": "https://m.media-amazon.com/images/I/71s0xHZYpUL._SY466_.jpg",
+            "price": 399,
+            "rating": 4.5,
+            "description": "Modern retelling of The Count of Monte Cristo set in contemporary London",
+            "id": "a-prisoner-of-birth",
+            "tags": [
+                "drama",
+                "must-read",
+                "fiction",
+                "saga",
+                "international",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Aarav Agarwal",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Pranav Iyer",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The humour was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Noah Banerjee",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Isha Rao",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Gautam Sinha",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Tanvi Mehta",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Zoya Roy",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Diya Patel",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rahul Roy",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Avni Roy",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Varun Iyer",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Sahil Malhotra",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The writing style was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "The Clifton Chronicles: Only Time Will Tell",
+            "author": "Jeffrey Archer",
+            "cover": "https://m.media-amazon.com/images/I/81oexVRqIjL._SY466_.jpg",
+            "price": 450,
+            "rating": 4.6,
+            "description": "First book of epic family saga spanning from 1920s to present day",
+            "id": "the-clifton-chronicles-only-time-will-tell",
+            "tags": [
+                "drama",
+                "must-read",
+                "fiction",
+                "saga",
+                "international",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Tanvi Kumar",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Nikhil Patel",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Priya Kumar",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Zoya Saxena",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Rohit Shetty",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Dev Das",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Ryan Fernandes",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Saanvi Verma",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The mystery was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Saanvi Das",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Daniel Mehta",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The ending was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "Heads You Win",
+            "author": "Jeffrey Archer",
+            "cover": "https://m.media-amazon.com/images/I/81C+BrOwZDL._SY466_.jpg",
+            "price": 499,
+            "rating": 4.4,
+            "description": "Parallel lives story of a Russian immigrant in two different countries",
+            "id": "heads-you-win",
+            "tags": [
+                "drama",
+                "fiction",
+                "saga",
+                "international",
+                "paperback",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Meera Das",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Zoya Fernandes",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kabir Malhotra",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Olivia Mukherjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The mystery was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Avni Chatterjee",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Siddharth Singh",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Alice Sinha",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Diya Verma",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Olivia Malhotra",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Sahil Banerjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The theme was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Nisha Roy",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The emotional impact was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Sara Kumar",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The pacing was particularly notable.",
+                    "rating": 3.5
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Philosopher's Stone",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/81YOuOGFCJL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.8,
+            "description": "Boy wizard discovers his magical heritage and attends Hogwarts School",
+            "id": "harry-potter-and-the-philosophers-stone",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Olivia Fernandes",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Rhea Menon",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Hannah Agarwal",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Sneha Bhat",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Saanvi Patel",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Nikhil Rao",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Siddharth Gupta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Ben Das",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "James Sharma",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Isha Mishra",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The plot twists was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Chamber of Secrets",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/81lAPl9Fl0L._SY466_.jpg",
+            "price": 350,
+            "rating": 4.7,
+            "description": "Harry returns to Hogwarts as mysterious attacks plague the school",
+            "id": "harry-potter-and-the-chamber-of-secrets",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Arjun Sharma",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Daniel Fernandes",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The dialogue was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sahil Mukherjee",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Meera Verma",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Shreya Rao",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Liam Kulkarni",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Olivia Patel",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Diya Kulkarni",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The research was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Arjun Agarwal",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Kiran Malhotra",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The research was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/81lT2pvVekL._SY466_.jpg",
+            "price": 399,
+            "rating": 4.8,
+            "description": "Harry faces an escaped convict and learns dark secrets about his past",
+            "id": "harry-potter-and-the-prisoner-of-azkaban",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Nikhil Bhat",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Olivia Kapoor",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Ananya Agarwal",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Aarav Kumar",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Isha Das",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kabir Bose",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Sara Malhotra",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Nikhil Shetty",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Meera Kapoor",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Sahil Kumar",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Gautam Kapoor",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Goblet of Fire",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/71q6N71h-GL._SY466_.jpg",
+            "price": 499,
+            "rating": 4.8,
+            "description": "Harry competes in the dangerous Triwizard Tournament",
+            "id": "harry-potter-and-the-goblet-of-fire",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Arjun Reddy",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "James Mishra",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Siddharth Mehta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Noah Das",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Aditi Verma",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Kavya Rao",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Ananya Bose",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Aditi Nair",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Ben Rao",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Nisha Rao",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The humour was particularly notable.",
+                    "rating": 3.0
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Order of the Phoenix",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/71IaHY87yaL._SY466_.jpg",
+            "price": 599,
+            "rating": 4.7,
+            "description": "Harry leads students in rebellion against Ministry interference at Hogwarts",
+            "id": "harry-potter-and-the-order-of-the-phoenix",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Priya Rao",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Dev Kumar",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Gautam Nair",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "James Agarwal",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Maya Fernandes",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Vihaan Kumar",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Ben Rao",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Priya Verma",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The humour was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Zoya Kapoor",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Noah Singh",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The research was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Half-Blood Prince",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/71R3pUQbJ8L._SY466_.jpg",
+            "price": 675,
+            "rating": 4.7,
+            "description": "Harry discovers a mysterious textbook and learns about Voldemort's past",
+            "id": "harry-potter-and-the-half-blood-prince",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Meera Mishra",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The plot twists was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Nikhil Banerjee",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Kiran Bhat",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Alice Jain",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Adrian Mishra",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Noah Shetty",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Diya Chatterjee",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The emotional impact was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Kabir Patel",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Rohit Reddy",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Maya Bhat",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Rahul Bhat",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The pacing was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "Harry Potter and the Deathly Hallows",
+            "author": "J.K. Rowling",
+            "cover": "https://m.media-amazon.com/images/I/71sH3vxziLL._SY466_.jpg",
+            "price": 719,
+            "rating": 4.9,
+            "description": "Epic conclusion as Harry faces Voldemort in the final battle",
+            "id": "harry-potter-and-the-deathly-hallows",
+            "tags": [
+                "young-adult",
+                "fantasy",
+                "adventure",
+                "classic",
+                "magic",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Liam Iyer",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Rahul Kapoor",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Sahil Das",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Nisha Shetty",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Meera Agarwal",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Ananya Shetty",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Akash Verma",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sahil Agarwal",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kiran Gupta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Shreya Mishra",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Sneha Menon",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The humour was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "And Then There Were None",
+            "author": "Agatha Christie",
+            "cover": "https://m.media-amazon.com/images/I/71Vkg00wVJL._SY466_.jpg",
+            "price": 250,
+            "rating": 4.6,
+            "description": "Ten strangers trapped on an island die one by one in Christie's masterpiece",
+            "id": "and-then-there-were-none",
+            "tags": [
+                "suspense",
+                "mystery",
+                "classic-mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Tanvi Malhotra",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Liam Roy",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Sofia Nair",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Maya Kapoor",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Liam Rao",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Meera Das",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Nisha Fernandes",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Rohit Sharma",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Shreya Singh",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The world-building was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Sara Bose",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Murder on the Orient Express",
+            "author": "Agatha Christie",
+            "cover": "https://m.media-amazon.com/images/I/71W7z8-9aYL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.5,
+            "description": "Hercule Poirot investigates a murder on a snowbound luxury train",
+            "id": "murder-on-the-orient-express",
+            "tags": [
+                "suspense",
+                "mystery",
+                "classic-mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Nikhil Kapoor",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Sneha Agarwal",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Varun Chatterjee",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Neha Joshi",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The world-building was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kiran Verma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The dialogue was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Rohit Bose",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Tanvi Menon",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Zoya Rao",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Sahil Rao",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The pacing was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Priya Nair",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The ending was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Rahul Agarwal",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Death on the Nile",
+            "author": "Agatha Christie",
+            "cover": "https://m.media-amazon.com/images/I/71cU86FdlEL._SY466_.jpg",
+            "price": 295,
+            "rating": 4.4,
+            "description": "Poirot solves a murder aboard a Nile river cruise in Egypt",
+            "id": "death-on-the-nile",
+            "tags": [
+                "suspense",
+                "mystery",
+                "classic-mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Sahil Iyer",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Diya Chatterjee",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Thomas Patel",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Siddharth Reddy",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The research was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Noah Saxena",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Nikhil Verma",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Vihaan Chatterjee",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Ryan Bose",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Daniel Agarwal",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Siddharth Gupta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The dialogue was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Cara Patel",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Noah Kapoor",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The world-building was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "The ABC Murders",
+            "author": "Agatha Christie",
+            "cover": "https://m.media-amazon.com/images/I/71yWmLfxfNL._SY466_.jpg",
+            "price": 240,
+            "rating": 4.3,
+            "description": "Serial killer taunts Poirot with alphabetical clues",
+            "id": "the-abc-murders",
+            "tags": [
+                "suspense",
+                "mystery",
+                "classic-mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Adrian Jain",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Priya Menon",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Dev Sharma",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sneha Mishra",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The plot twists was particularly notable.",
+                    "rating": 2.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Kiran Roy",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Isha Menon",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Pranav Shetty",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Rohit Malhotra",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The pacing was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Sneha Malhotra",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Arjun Nair",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The mystery was particularly notable.",
+                    "rating": 4.0
+                }
+            ]
+        },
+        {
+            "title": "The Da Vinci Code",
+            "author": "Dan Brown",
+            "cover": "https://m.media-amazon.com/images/I/815WORuYMML._SY466_.jpg",
+            "price": 399,
+            "rating": 4.2,
+            "description": "Robert Langdon unravels centuries-old mystery hidden in Da Vinci paintings",
+            "id": "the-da-vinci-code",
+            "tags": [
+                "conspiracy",
+                "suspense",
+                "mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Isha Chatterjee",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Kabir Agarwal",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Saanvi Kumar",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Cara Singh",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Sahil Fernandes",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Varun Das",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Cara Chatterjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The characters was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Cara Nair",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Sneha Saxena",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Aarav Singh",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Hannah Kulkarni",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The emotional impact was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Elena Singh",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The theme was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        },
+        {
+            "title": "Angels and Demons",
+            "author": "Dan Brown",
+            "cover": "https://m.media-amazon.com/images/I/81AeTQ3R5zL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.3,
+            "description": "Langdon races to stop antimatter bomb threatening Vatican City",
+            "id": "angels-and-demons",
+            "tags": [
+                "conspiracy",
+                "suspense",
+                "mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Rahul Mishra",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Kiran Menon",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Arjun Chatterjee",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The research was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Thomas Jain",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The research was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Kabir Roy",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Aditi Mishra",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The plot twists was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Sahil Menon",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Meera Fernandes",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Isha Kapoor",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Thomas Roy",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The research was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "Master of the Game",
+            "author": "Sidney Sheldon",
+            "cover": "https://m.media-amazon.com/images/I/81EqZXYXwYL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.5,
+            "description": "Multi-generational saga of power, greed and revenge in diamond empire",
+            "id": "master-of-the-game",
+            "tags": [
+                "popular",
+                "suspense",
+                "mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sara Shetty",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Mihir Nair",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Dev Nair",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The dialogue was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Shreya Verma",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Sahil Gupta",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Rhea Menon",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The ending was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Dev Fernandes",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Maya Kumar",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The mystery was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Ananya Mishra",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The humour was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Rohit Jain",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Liam Kapoor",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The plot twists was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Characters that stay with you",
+                    "reviewer": "Gautam Reddy",
+                    "review": "Strong ideas and consistent tone throughout. It is an easy recommendation if you like character-driven stories. The ending was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "If Tomorrow Comes",
+            "author": "Sidney Sheldon",
+            "cover": "https://m.media-amazon.com/images/I/81e-3Ea1PFL._SY466_.jpg",
+            "price": 275,
+            "rating": 4.4,
+            "description": "Woman wrongly imprisoned becomes master con artist seeking justice",
+            "id": "if-tomorrow-comes",
+            "tags": [
+                "library",
+                "suspense",
+                "mystery",
+                "crime",
+                "thriller",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Adrian Patel",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Kiran Bhat",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Elena Iyer",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The characters was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Kiran Jain",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Ryan Fernandes",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Dev Bhat",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Sara Mehta",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The plot twists was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Saanvi Mehta",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Saanvi Agarwal",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Arjun Das",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "The Accursed God",
+            "author": "Vivek Dutta Mishra",
+            "cover": "https://m.media-amazon.com/images/I/71VH8tYLVYL._SY466_.jpg",
+            "price": 399,
+            "rating": 4.4,
+            "description": "First book of The Lost Epic Series exploring Bhishma's journey before Kurukshetra",
+            "id": "the-accursed-god",
+            "tags": [
+                "popular",
+                "mythology",
+                "indian",
+                "historical-fiction",
+                "epic-retelling",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Zoya Menon",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Isha Iyer",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The dialogue was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Nikhil Sinha",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The plot twists was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Dev Kumar",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The ending was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Engaging from start to finish",
+                    "reviewer": "Gautam Fernandes",
+                    "review": "The writing style is accessible and the plot moves steadily without dragging. I especially liked how the themes are woven into the story. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Sneha Kapoor",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The plot twists was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Hannah Iyer",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The humour was particularly notable.",
+                    "rating": 3.0
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Nikhil Kumar",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Ben Kulkarni",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The pacing was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Avni Bhat",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The mystery was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Ananya Iyer",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The research was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Zoya Kapoor",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The humour was particularly notable.",
+                    "rating": 5
+                }
+            ]
+        },
+        {
+            "title": "The Shadows of Kali",
+            "author": "Vivek Dutta Mishra",
+            "cover": "https://m.media-amazon.com/images/I/71qzGq6HWEL._SY466_.jpg",
+            "price": 299,
+            "rating": 4.5,
+            "description": "Second book of The Lost Epic Series - story of a world quietly burning",
+            "id": "the-shadows-of-kali",
+            "tags": [
+                "mythology",
+                "novel",
+                "indian",
+                "historical-fiction",
+                "top-rated",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Sahil Rao",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Ananya Jain",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The theme was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Rohit Mukherjee",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Akash Singh",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Ananya Roy",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The humour was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Neha Singh",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The emotional impact was particularly notable.",
+                    "rating": 2.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Pranav Singh",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The dialogue was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Priya Shetty",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The world-building was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Mihir Kulkarni",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Saanvi Malhotra",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Dev Joshi",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The mystery was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Mihir Roy",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The mystery was particularly notable.",
+                    "rating": 3.5
+                }
+            ]
+        },
+        {
+            "title": "Manas: Mahabharat Nyay Samiti",
+            "author": "Vivek Dutta Mishra",
+            "cover": "https://m.media-amazon.com/images/I/71bQZPqH5PL._SY466_.jpg",
+            "price": 350,
+            "rating": 4.4,
+            "description": "Hindi book exploring the justice committee of Mahabharat epic",
+            "id": "manas-mahabharat-nyay-samiti",
+            "tags": [
+                "mythology",
+                "indian",
+                "historical-fiction",
+                "epic-retelling",
+                "paperback",
+                "bestseller"
+            ],
+            "reviews": [
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Olivia Mishra",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "Saanvi Mehta",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Sneha Mishra",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The emotional impact was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Great pacing",
+                    "reviewer": "James Banerjee",
+                    "review": "Some parts could have been tighter, but the overall experience was enjoyable. I would still recommend it to most readers. The characters was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A few flaws, but enjoyable",
+                    "reviewer": "Olivia Gupta",
+                    "review": "Entertaining and easy to read, with a few standout scenes. It felt like a satisfying weekend read. The world-building was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Tanvi Mehta",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The ending was particularly notable.",
+                    "rating": 4.5
+                },
+                {
+                    "title": "A thoughtful read",
+                    "reviewer": "Priya Banerjee",
+                    "review": "This book kept me hooked with its twists and clear stakes. A couple of sections felt slow, but the payoff was satisfying. The research was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Could not put it down",
+                    "reviewer": "Olivia Nair",
+                    "review": "The characters feel believable and the setting is vivid. I finished it quickly and kept thinking about it afterward. The writing style was particularly notable.",
+                    "rating": 5
+                },
+                {
+                    "title": "Atmospheric and immersive",
+                    "reviewer": "Aditi Verma",
+                    "review": "The plot is engaging and the book maintains interest through most chapters. I would re-read parts of it later. The theme was particularly notable.",
+                    "rating": 4.0
+                },
+                {
+                    "title": "Solid storytelling",
+                    "reviewer": "Aarav Fernandes",
+                    "review": "A well-structured narrative with memorable moments and good momentum. It delivers what it promises for the genre. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "Worth the hype",
+                    "reviewer": "Saanvi Bose",
+                    "review": "I picked it up for the premise and stayed for the execution. The ending wrapped things up nicely without feeling rushed. The humour was particularly notable.",
+                    "rating": 3.5
+                },
+                {
+                    "title": "A strong recommendation",
+                    "reviewer": "Adrian Sharma",
+                    "review": "A compelling book with a clear voice and good pacing. It left me wanting to read more from the author. The mystery was particularly notable.",
+                    "rating": 4.5
+                }
+            ]
+        }
+    ]
+    return db.books.insertMany(books.map(b=>{
+        b.authorId=b.author.toLowerCase().split( ' ').join('-');
+        delete b.author; //name not directly included
+        return b
+    }))
+
+}
+
+const buildDb = () => {
+    if (db.books)
+        db.books.drop();
+    if (db.authors)
+        db.authors.drop();
+    const authors=addAuthors();
+    const books=addBooks();
+    return {authors,books}
+}
+
+
+buildDb()
