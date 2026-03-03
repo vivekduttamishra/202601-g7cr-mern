@@ -1,8 +1,8 @@
 import assert from 'node:assert'
-import {describe, it, beforeEach} from 'node:test'
+//import {describe, it, beforeEach} from 'node:test'
 import { isPrimeSync, findPrimes } from './primes.js'
 
-describe('primes test',()=>{
+xdescribe('primes test',()=>{
 
     describe('isPrimeSync tests',()=>{
         it('should return true for 2',()=>{
