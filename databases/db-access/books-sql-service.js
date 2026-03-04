@@ -1,16 +1,30 @@
 import sql from 'mssql/msnodesqlv8.js';
 
-const config = {
+const _config = {
   // Use the universal {SQL Server} driver name
   connectionString: 'Driver={SQL Server};Server=localhost\\SQLEXPRESS;Database=BOOKS_DB;Trusted_Connection=yes;',
 };
+const config = {
+  // Use the universal {SQL Server} driver name
+  server: 'localhost\\SQLEXPRESS',
+  database: 'BOOKS_DB',
+  options: {
+    trustedConnection: true,
+    trustCertificate: true
+  },
+  driver: 'SQL Server',  
+  //connectionString: 'Driver={SQL Server};Server=localhost\\SQLEXPRESS;Database=BOOKS_DB;Trusted_Connection=yes;',
+
+};
+
+
 
 export async function getAllBooks() {
-
       await sql.connect(config);
       const result = await sql.query`SELECT * FROM books`;
       await sql.close();
-      return result.recordset;
+      console.table(result.recordset);
+      return ""
 }
 
 export async function getBookById(id){

@@ -9,6 +9,7 @@ export default class Cli {
         this.commands = {
 
         }
+        
 
         this.addCommand(this.help.bind(this), 'help', `
             Provides help on available commands
@@ -52,14 +53,26 @@ export default class Cli {
         }
     }
 
-    addCommand(commandFunction, commandName, helpText) {
-        if (!commandName)
-            commandName = commandFunction.name;
+    addCommand(command, commandName, helpText) {
 
-        commandName = commandName.toLowerCase()
-        if (helpText)
-            commandFunction.help = helpText;
-        this.commands[commandName] = commandFunction
+        if(typeof command === 'function'){
+            command={
+                commandFunction:command
+            }
+        }
+
+        if(!command.commandFunction || typeof command.commandFunction !== 'function'){
+            throw new Error("Invalid Command Function")
+        }
+
+        command={
+            ...command,
+            commandName: command.commandName??command.commandFunction.name,
+            help: helpText?? command.help ?? "No Help Available"
+        }
+
+      
+        this.commands[commandName.toLowerCase()] = command
 
     }
 
@@ -72,14 +85,14 @@ export default class Cli {
             this.executeCommand(commandName, args)
     }
 
-    executeInteractive() {
+    async executeInteractive() {
         this.interactiveMode = true;
         this.prompt = promptBuilder()
         while (true) {
             let input = this.prompt("> ")
             const [commandName, args] = this.parseInput(input)
             console.log(commandName, args)
-            this.executeCommand(commandName, args)
+            await this.executeCommand(commandName, args)
         }
     }
 
@@ -110,33 +123,31 @@ export default class Cli {
         return [commandName, args]
     }
 
-    executeCommand(commandName, args) {
+    async executeCommand(commandName, args) {
         commandName = commandName.toLowerCase()
-        let command = this.commands[commandName]
+        let command = this.commands[commandName]?.commandFunction
         if (command) {
-            let result = command(...args)
+            try{
 
-            if (result instanceof Promise) {
-
-                result
-                    .then(result => {
-                        console.log(result)
-                       
-
-                    })
-                    .catch(error => {
-                        console.error(error.message)
-
-                    })
-            } else {
-                //normal sync result
-                console.log(result)
-
+                let result = command(...args)
+                if (result instanceof Promise) {
+                    result = await result
+                }
+                if(result)
+                    console.log(result)
+                if(!this.interactiveMode)
+                    process.exit(0)
+            }catch(err){
+                console.error(err.message)
+                if(!this.interactiveMode)
+                    process.exit(1)
             }
-
         }
-        else
-            console.log(`Invalid command : ${commandName}`)
+        else{
+            console.error(`Invalid command : ${commandName}`)
+            if(!this.interactiveMode)
+                process.exit(1)
+        }
     }
 
 }
