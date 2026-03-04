@@ -1,4 +1,4 @@
-import { SqlManager } from "./sql-utils.js";
+import sql from 'mssql/msnodesqlv8.js';
 
 const _config = {
   // Use the universal {SQL Server} driver name
@@ -20,33 +20,51 @@ const config = {
 
 };
 
-const manager=new SqlManager(config);
+
 
 export async function getAllBooks() {
-  
-  let result = await manager.execute(async(sql)=>await sql.query`SELECT * FROM books`)
-
-  return result.recordset
-
+  await sql.connect(config);
+  const result = await sql.query`SELECT * FROM books`;
+  await sql.close();
+  console.table(result.recordset);
+  return ""
 }
 
 export async function getBookById(id) {
+  try {
 
-  const result =await manager.execute(async sql=> await sql.query`SELECT * from books where id=${id}`)
+    await sql.connect(config)
+    const result = await sql.query`SELECT * from books where id=${id}`
     if (result.recordset.length)
       return result.recordset[0]
     else
       throw new Error(`No Book with id : ${id}`)
+  } finally {
+    await sql.close()
+  }
 }
 
 
 export async function addBook(title, author, price) {
-    const result =await manager.execute(sql=>  sql.query`INSERT INTO BOOKS(TITLE,AUTHOR,PRICE) VALUES(${title},${author},${price})`)
+  try {
+
+    await sql.connect(config)
+    const result = await sql.query`INSERT INTO BOOKS(TITLE,AUTHOR,PRICE) VALUES(${title},${author},${price})`
     return result.rowsAffected ? "Book Added" : "Book Add Failed";
+  } finally {
+
+    await sql.close()
+  }
 }
 
-export function deleteBook(id) {
-    
-  return manager.execute(sql=> sql.query`DELETE FROM BOOKS WHERE ID=${id}`)
-  
+export async function deleteBook(id) {
+  try {
+    await sql.connect(config)
+    const result = await sql.query`DELETE FROM BOOKS WHERE ID=${id}`
+    return result;
+
+  } finally {
+    await sql.close()
+
+  }
 }

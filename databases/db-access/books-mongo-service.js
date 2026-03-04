@@ -59,14 +59,14 @@ export async function getBookByAuthor(authorId){
 
 }
 
-export async function addBook(title, authorId, price, rating){
+export async function addBook(title, authorId, price, rating,tags){
     let id = title.toLowerCase().split(' ').join('-')
     let authorCollection = await getCollection('authors')
     let author = await authorCollection.findOne({id:authorId})
     
     if(author){
         let booksCollection = await getCollection('books')
-        let result= await booksCollection.insertOne({id,title,authorId,price,rating})
+        let result= await booksCollection.insertOne({id,title,authorId,price,rating,tags})
         let book = await booksCollection.findOne({id})
         client.close();
         return book;
