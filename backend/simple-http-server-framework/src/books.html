@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Books</h2>
+    <input type="search" id="search"/>
+    <button onclick="getAllBooks()">Get All Books</button>
+    <button>Get Book By Id</button>
+    <button>Add Book</button>
+
+    <div id="output">
+
+    </div>
+
+    <script>
+
+        const baseUrl="http://localhost:5000/books"
+
+        async function getAllBooks(){
+            const response = await fetch(baseUrl)
+            console.log('response',response);
+            
+        }
+
+
+    </script>
+    
+</body>
+</html>
