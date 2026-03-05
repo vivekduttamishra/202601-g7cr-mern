@@ -1,25 +1,25 @@
 //step #1 get module
 const http = require('http');
-require('./date-time.js')  //adds date time related routes
-require('./home.js')   //adds home related routes
-const routes = require('./routes.js')  //get all routes
-
-//console.log('routes',routes);
 
 
- 
 //step #2 create server
 const server = http.createServer(
     function (request, response) {
-
+        
         let path = request.url;
-        if(routes[path])
-            routes[path](request,response)
-        else
-            response.write(`NOT FOUND: ${path}`)
+        if(path==='/date')
+            response.write(`Today is ${new Date().toLocaleDateString()}`)
+        else if(path==='/time')
+            response.write(`Time now is ${new Date().toLocaleTimeString()}`)
+        else if(path==='/')
+            response.write(`Hello NodeJS World`)
+        else{
+            response.statusCode=404
+            response.write(`Not Found: ${path}`)
+        }
 
         response.end();
-
+        
     }
 
 )

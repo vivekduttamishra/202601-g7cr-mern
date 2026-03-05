@@ -1,13 +1,12 @@
 //step #1 get module
 const http = require('http');
-require('./date-time.js')  //adds date time related routes
-require('./home.js')   //adds home related routes
-const routes = require('./routes.js')  //get all routes
 
-//console.log('routes',routes);
+const routes = {
+    '/date': (request, response) => response.write(`Today is ${new Date().toLocaleDateString()}`),
+    '/time': (request, response) => response.write(`Time now is ${new Date().toLocaleTimeString()}`),
+    '/': (request,response) =>response.write(`Hello NodeJS World`)
+}
 
-
- 
 //step #2 create server
 const server = http.createServer(
     function (request, response) {
