@@ -1,8 +1,13 @@
 
-import { addAuthor, getAllAuthors, getAuthorById, getBooksByAuthor } from './author-service.js';
+import { addAuthor, getAllAuthors, getAuthorById, getAuthorWithBooks } from './author-service.js';
 import { addBook, addReview, getAllBooks,getBookById } from './books-service.js';
 import Cli, { CsvArray, Float, Int, Text } from './cli.js'
-import { connect } from './connect.js';
+//import { connect } from './connect.js';
+
+import {Author,Book,Review} from './sequelize/index.js';
+import { initDB } from './sequelize/sync.js';
+
+
 
 
 
@@ -19,8 +24,8 @@ cli.addCommand({
 
 cli.addCommand({
     commandFunction:addBook, 
-    argCount:6,
-    argTypes:[Text,Text,Text,Int,Float,CsvArray] 
+    argCount:4,
+    argTypes:[Text, Text, Int, Text] 
 })
 
 cli.addCommand({
@@ -37,21 +42,21 @@ cli.addCommand({
 cli.addCommand({
     commandFunction: getAuthorById
 })
+
 cli.addCommand({
-    commandFunction: getBooksByAuthor
+    commandFunction: addAuthor    
 })
-cli.addCommand({
-    commandFunction: addAuthor,
-    argCount:4,
-    argTypes:[Text, Text, Text, CsvArray]
-})
+
+cli.addCommand(initDB)
+
+cli.addCommand(getAuthorWithBooks)
 
 //connect().then(_=>cli.execute());
 
 //cli.exectue();
 
 async function start(){
-    await connect();
+    //await connect();
     cli.exectue();
 }
 

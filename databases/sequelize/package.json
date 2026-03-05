@@ -11,10 +11,9 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "msnodesqlv8": "^5.1.5",
+    "dotenv": "^17.3.1",
     "prompt-sync": "^4.2.0",
     "sequelize": "^6.37.7",
-    "sequelize-msnodesqlv8": "^0.2.6-beta.8",
     "tedious": "^19.2.1"
   }
 }

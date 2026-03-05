@@ -32,6 +32,13 @@ export default class Cli {
         this.primaryCommands = [];
 
         this.addCommand({
+            commandName: "clear",
+            commandFunction: ()=> console.clear(),
+            aliases: ['cls'],
+            help: 'Clears the console'
+        })
+
+        this.addCommand({
             commandFunction: this.help.bind(this),
             commandName: 'help',
             aliases: ['?'],
@@ -88,6 +95,8 @@ export default class Cli {
 
         //only used for building help not for executing it
         this.primaryCommands.push(commandName)
+
+
     }
 
     help(commandName) {

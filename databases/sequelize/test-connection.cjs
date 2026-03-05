@@ -1,20 +1,26 @@
 const { Sequelize } = require('sequelize');
-const mssql = require('mssql'); // Use the package that already works for you
 
-const sequelize = new Sequelize('BOOKS_DB', null, null, {
+const sequelize = new Sequelize({
   dialect: 'mssql',
-  // Pass the working mssql object directly
-  dialectModule: mssql, 
+  // DO NOT use dialectModule. Use dialectModulePath to load the adapter.
+  dialectModulePath: 'sequelize-msnodesqlv8', 
   dialectOptions: {
-    connectionString: 'Driver={SQL Server};Server=localhost\\SQLEXPRESS;Database=BOOKS_DB;Trusted_Connection=yes;',
-    options: {
-      trustedConnection: true,
-      trustServerCertificate: true
-    }
+    // Exact connection string you verified in your SqlManager
+    connectionString: 'Driver={SQL Server};Server=localhost\\SQLEXPRESS;Database=BOOKS_DB;Trusted_Connection=yes;'
+  },
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
   }
 });
 
-// Test
-sequelize.authenticate()
-  .then(() => console.log('Success!'))
-  .catch(err => console.error('Error:', err));
+async function test() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection successful!');
+  } catch (err) {
+    console.error('Unable to connect:', err);
+  }
+}
+test();
