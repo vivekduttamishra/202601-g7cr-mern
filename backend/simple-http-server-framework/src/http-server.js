@@ -9,7 +9,7 @@ const routes={}
 
 const server = http.createServer((request,response)=>{
 
-    const path = request.url
+    const path = `${request.method} ${request.url}`
     
     if(routes[path])
         routes[path](request,response)
