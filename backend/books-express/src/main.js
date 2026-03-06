@@ -3,7 +3,8 @@ import dotenv from 'dotenv'
 dotenv.config()
 import app from './app.js'
 import './books.js'  //we just want this code to execute
-import './authors.js' //they will automatically update app
+
+
 
 const port = Number(process.argv[2] ?? process.env.PORT ?? 80)
 
