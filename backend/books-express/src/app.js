@@ -1,4 +1,5 @@
 import express from 'express'
+import authorRoute from './routes/authors.route.js'
 
 const app = express()
 
@@ -8,6 +9,7 @@ app.use(express.json())
 
 
 //configure your routes here
+app.use("/api", authorRoute)
 
 
 
