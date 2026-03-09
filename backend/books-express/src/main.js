@@ -1,10 +1,14 @@
 import dotenv from 'dotenv'
 import http from 'http'
-import {initDB} from './repositories/sequelize/sync.js'
 dotenv.config()
 
-import {connect} from './repositories/mongoose/connect.js'
+//MUST IMPORT IT BEFORE IMPORTAING ANY OTHER COMPONENT
+import './dependencies.js'
 
+
+// NOW ALL THESE COMPONENTS CAN USE dependencies.
+import {connect} from './repositories/mongoose/connect.js'
+import {initDB} from './repositories/sequelize/sync.js'
 import app from './app.js'
 
 const server = http.createServer(app)
@@ -18,7 +22,7 @@ server.on('error',(error)=>console.error(`Error sarting server on port {$port}`)
    
 async function startServer(){
     try{
-        if(process.env.SEQUELIZE_INIT){
+        if(process.env.SEQUELIZE_INIT=='true'){
             console.log('intializing sequelize database')
             await initDB();
         }

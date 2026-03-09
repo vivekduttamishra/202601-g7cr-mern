@@ -1,8 +1,8 @@
 
 export class AuthorService{
 
-    constructor(repository){
-        this.repository=repository
+    constructor(authorRepository){
+        this.repository=authorRepository
     }
 
     async getAllAuthors(){

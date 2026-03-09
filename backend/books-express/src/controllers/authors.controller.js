@@ -1,9 +1,7 @@
-import { MongooseAuthorRepository } from "../repositories/mongoose/mongoose-author.repository.js"
-import { SequelizeAuthorRepository } from "../repositories/sequelize/sequelize-author.repository.js"
-import { AuthorService } from "../services/authors.service.js"
+import injector from '../utils/injector.js'
 
-const authorService=new AuthorService(new MongooseAuthorRepository())
-//const authorService = new AuthorService(new SequelizeAuthorRepository())
+//we get authorService with all its dependencies
+const authorService= injector.get("authorService") 
 
 export async function getAllAuthors(request,response){
         let authors = await authorService.getAllAuthors()

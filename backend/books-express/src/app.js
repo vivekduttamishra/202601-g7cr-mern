@@ -1,4 +1,5 @@
 import express from 'express'
+
 import authorRoute from './routes/authors.route.js'
 
 const app = express()
