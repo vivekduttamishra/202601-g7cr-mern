@@ -1,0 +1,79 @@
+
+#we can define variables
+@base_url=http://localhost:4000/api/authors
+@accept_json=Accept: application/json
+
+
+# Get All Authors
+GET {{base_url}}
+{{accept_json}}
+
+
+###
+
+# Get Author By Id
+GET  {{base_url}}/vivek-dutta-mishra
+{{accept_json}}
+
+
+###
+
+# Get Author By InvalidId
+GET  {{base_url}}/invalid-id
+{{accept_json}}
+
+
+###
+
+# Add new Author
+# @name newAuthor
+POST {{base_url}}
+{{accept_json}}
+Content-Type: application/json
+
+{
+    "name": "Lalit Ranjan Pathak",
+    "biography": "Doctor by profession, poet by heart",
+    "tags": [
+        "poet",
+        "hindi",
+        "doctor"
+    ],
+    "photos":"lalit.jpg"
+}
+
+
+###
+
+@location=http://{{newAuthor.response.headers.location}}
+@newAuthorId={{newAuthor.response.body._id}}
+
+# Test newly created author
+GET {{location}}
+{{accept_json}}
+
+
+###
+
+# Update newly created author
+PUT {{base_url}}/{{newAuthorId}}
+{{accept_json}}
+Content-Type: application/json
+
+{
+    tags:[
+        "poet",
+        "hindi",
+        "english",
+        "doctor"
+    ]
+}
+
+###
+
+#Delete newly created author
+DELETE {{base_url}}/{{newAuthorId}}
+
+###
+#verify newly created author is deleted. should be 404
+GET {{base_url}}/{{newAuthorId}}

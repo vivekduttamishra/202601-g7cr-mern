@@ -10,4 +10,4 @@ Book.belongsTo(Author, { foreignKey: 'authorId' });
 Book.hasMany(Review, { foreignKey: 'book_id' });
 Review.belongsTo(Book, { foreignKey: 'book_id' });
 
-export { Author, Book, Review };
+export { Author, Book, Review };    
