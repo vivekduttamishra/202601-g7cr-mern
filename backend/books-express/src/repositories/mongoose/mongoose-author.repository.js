@@ -4,12 +4,13 @@ import {Author} from './author.model.js'
 export class MongooseAuthorRepository{
     
     async getAll(){
-        return await Author.find()
+        return (await Author.find()).map(a=>this.normalizeId(a))
     }
 
     normalizeId(author){
         author.id=author._id
         delete author._id
+        return author
     }
 
     async getById(id){
@@ -27,10 +28,13 @@ export class MongooseAuthorRepository{
     }
 
     async remove(id){
-        await Author.deleteOne({_id:id})
+        console.log('removing ', id)
+       let result =  await Author.findByIdAndDelete(id)
+       console.log('remove result',result)
     }
 
     async update(id, author){
+
         await Author.updateOne({_id:id}, {
             $set:{
                 name: author.name

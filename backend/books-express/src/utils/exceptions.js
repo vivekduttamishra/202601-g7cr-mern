@@ -1,7 +1,10 @@
 export class InvalidIdError extends Error{
     constructor(id, message){
         super(message??`Invalid Id: ${id}`)
-        this.id=id
+        this.info={
+            id,
+            message:this.message
+        }
     }
 }
 
@@ -24,3 +27,36 @@ export class ValidationError extends Error{
         }
     }
 }
+
+export class AuthenticationError extends Error{
+    constructor(requiredRoles, message){
+        
+        super(requiredRoles?.length ? "UnAuthorized" : "UnAuthenticated")
+        this.requiredRoles
+    }
+}
+
+export class DuplicateIdError extends Error{
+    constructor(id,message){
+        super(message??`Duplicate Id: ${id}`)
+        this.info={
+            id,
+            message: this.message
+        }
+    }
+}
+
+export class HttpError extends Error{
+    constructor(status, url, message){
+        super(message??`Http Error`)
+        this.info={
+            status,
+            url,
+            message:this.message
+        }        
+    }
+
+    get status(){return this.info.status}
+    get body() {return this.info}
+}
+

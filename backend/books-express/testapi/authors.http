@@ -90,7 +90,7 @@ Content-Type: application/json
 ###
 
 #Delete newly created author
-DELETE {{base_url}}/{{newAuthorId}}
+DELETE {{location}}
 
 ###
 #verify newly created author is deleted. should be 404
