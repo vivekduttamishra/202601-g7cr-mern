@@ -1,3 +1,4 @@
+import { ValidationError } from '../utils/exceptions.js'
 import injector from '../utils/injector.js'
 
 //we get authorService with all its dependencies
@@ -20,11 +21,35 @@ export async function getAuthorById(request,response){
 
 export async function addAuthor(request,response){
         const {body,host,originalUrl} = request
-        const result = await authorService.addAuthor(body)
-        response
-                .status(201)
-                .set("location",`${host}${originalUrl}/${result._id}`)
-                .send(result)
+        try{
+                const result = await authorService.addAuthor(body)
+
+                response
+                        .status(201)
+                        .set("location",`${host}${originalUrl}/${result._id}`)
+                        .send(result)
+        }catch(ex){
+                if(ex instanceof ValidationError){
+                        response
+                                .status(400)
+                                .send({
+                                        message: ex.message,
+                                        errors:ex.errors
+                                })
+                } 
+                //else if (ex instanceof AuthenticationError){
+                //  response.status(401).send({message:"Not Authenticated"})
+                //}
+                
+                //else if (ex instanceof AuthroizationError){
+                //  response.status(401).send({message:"Not Authorized", requiredRoles: ex.roles})
+                //}
+
+                else {
+                        
+                        throw ex //let it be error 500
+                }
+        }
 }
 
 export async function deleteAuthor(request,response){

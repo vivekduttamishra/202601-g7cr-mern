@@ -3,6 +3,8 @@
 @base_url=http://localhost:4000/api/authors
 @accept_json=Accept: application/json
 
+@content_json=Content-Type: application/json
+
 
 # Get All Authors
 GET {{base_url}}
@@ -20,10 +22,26 @@ GET  {{base_url}}/vivek-dutta-mishra
 
 # Get Author By InvalidId
 GET  {{base_url}}/invalid-id
-{{accept_json}}
+
 
 
 ###
+
+# Add invalid author
+# @name addInvalidAuthor
+
+POST {{base_url}}
+{{accept_json}}
+{{content_json}}
+
+{
+    "name":"Vivek",
+    "biography":"Hello",
+    "tags":["one","two","three","four","five","six"]
+}
+
+###
+
 
 # Add new Author
 # @name newAuthor
