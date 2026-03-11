@@ -1,0 +1,42 @@
+import {useState,useEffect} from 'react';
+import Loading from './Loading'
+import ErrorView from './ErrorView'
+
+const AsyncAction = ({promise, children,onLoading, onError}) => {
+    //component logic here
+    const [status,setStatus]=useState("loading")
+    const [error,setError]=useState(null)
+    const [data, setData] = useState(null)
+
+   
+
+    useEffect(()=>{
+        setStatus('loading')
+        setError(null)
+        promise
+            .then(data=>{
+                setData(data)
+                setStatus('done')
+                setError(null)
+            })
+            .catch(error=>{
+                setStatus("error")
+                setError(error)
+            })
+    },[promise])
+
+    if(status==='loading')
+        return onLoading? onLoading() : <Loading/>
+
+    if(status==='error')
+       return onError? onError(error) : <ErrorView error={error} />
+
+    if(status==='done')
+        return children(data)
+    else 
+        return "unexpected"
+    
+    
+};
+
+export default AsyncAction;

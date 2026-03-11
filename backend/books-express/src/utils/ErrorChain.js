@@ -8,8 +8,8 @@ export class ErrorChain {
                 status: 500,
                 body: {
                     status: 500,
-                    message: "Internal Server Error",
-                    details: error
+                    message: "Internal Server Error:"+error.message,
+                    details: error.stackTrace
                 }
             })
         }

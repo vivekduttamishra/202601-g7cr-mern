@@ -7,9 +7,11 @@ export class MongooseAuthorRepository{
         return (await Author.find()).map(a=>this.normalizeId(a))
     }
 
-    normalizeId(author){
+    normalizeId(author ){
+        author = author.toObject(); //covert to plain JSON
         author.id=author._id
-        delete author._id
+        delete author._id 
+       
         return author
     }
 
@@ -34,6 +36,8 @@ export class MongooseAuthorRepository{
     }
 
     async update(id, author){
+        author._id=author.id
+        delete author.id;
 
         await Author.updateOne({_id:id}, {
             $set:{
