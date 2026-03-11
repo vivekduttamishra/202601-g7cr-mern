@@ -3,6 +3,7 @@ import express from 'express'
 import authorRoute from './routes/authors.route.js'
 import userRoute from './routes/user.route.js'
 import appErrors from './app-errors.js'
+import { parseJwtToken } from './utils/jwt.js'
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use((request,response,next)=>{
     next(); //ok. i am done. more to main request.
 })
 
+app.use(parseJwtToken)
 
 //configure your routes here
 app.use("/api", authorRoute)

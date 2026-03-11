@@ -1,12 +1,13 @@
 import {getAllUsers, register, login, currentUser } from '../controllers/user.controller.js'
 
 import express from 'express'
+import { authenticate, authorize } from '../utils/jwt.js'
 
 const router = express.Router()
 
 router.
     route("/users")
-    .get(getAllUsers)
+    .get( authorize("admin"),getAllUsers)
     .post(register)
 
 router
@@ -15,6 +16,6 @@ router
 
 router
     .route("/users/current-user")
-    .get(currentUser)
+    .get(authenticate, currentUser)
 
 export default router;

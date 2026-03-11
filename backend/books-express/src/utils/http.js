@@ -36,10 +36,15 @@ export const asyncHandler = (handler)=> async (request,response,next)=>{
                     host:request.host, 
                     headers:request.headers,
                     method:request.method, ...request.params, 
-                        body:request.body, query:request.query }
+                    body:request.body, query:request.query, 
+                    user:request.user,
+                    tokenError:request.tokenError
+                    }
 
 
         let result = await handler(context)
+        if(result===undefined)
+            return;
         const status = successStatus[request.method]
         response.status(status)
         if(result instanceof ResponseContent)
