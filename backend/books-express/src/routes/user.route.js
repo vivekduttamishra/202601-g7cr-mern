@@ -1,4 +1,4 @@
-import {getAllUsers, register, login } from '../controllers/user.controller.js'
+import {getAllUsers, register, login, currentUser } from '../controllers/user.controller.js'
 
 import express from 'express'
 
@@ -12,5 +12,9 @@ router.
 router
     .route("/users/login")
     .post(login)
+
+router
+    .route("/users/current-user")
+    .get(currentUser)
 
 export default router;

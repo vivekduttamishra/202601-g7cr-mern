@@ -4,7 +4,7 @@
 @accept=Accept: application/json
 
 
-# Get All Users
+# Get All Users from guest
 GET {{base_url}}
 {{accept}}
 
@@ -19,7 +19,8 @@ POST {{base_url}}
     "email":"vivek@conceptarchitect.in",
     "password":"pass",
     "name":"Vivek Dutta Mishra",
-    "roles":["admin","author"]
+    "roles":["admin","author"],
+    "photo":"https://m.media-amazon.com/images/S/amzn-author-media-prod/2fuqj5h433n56ucdr3s5j1k2j9.jpg"
 }
 
 ###
@@ -32,7 +33,8 @@ POST {{base_url}}
 {
     "email":"sanjay@gmail.com",
     "password":"pass",
-    "name":"Sanjay Mall"    
+    "name":"Sanjay Mall",
+    "photo":"https://randomuser.me/api/portraits/men/39.jpg"   
 }
 
 
@@ -53,6 +55,7 @@ POST {{base_url}}
 ###
 
 # login normal user
+# @name normalUser
 POST {{base_url}}/login
 {{content_type}}
 {{accept}}
@@ -61,6 +64,22 @@ POST {{base_url}}/login
     "email": "sanjay@gmail.com", 
     "password":"pass"    
 }
+###
+
+@normalUserToken= {{normalUser.response.body.token}}
+
+###
+# find the current user
+GET {{base_url}}/current-user
+Authorization: BEARER {{normalUserToken}}
+
+###
+
+# get all users from normal account
+GET {{base_url}}
+Authorization: BEARER {{normalUserToken}}
+
+
 ###
 
 # login invalid normal user
@@ -75,6 +94,7 @@ POST {{base_url}}/login
 ###
 
 # login admin user
+# @name adminUser
 POST {{base_url}}/login
 {{content_type}}
 {{accept}}
@@ -83,3 +103,16 @@ POST {{base_url}}/login
     "email": "vivek@conceptarchitect.in", 
     "password":"pass"    
 }
+
+###
+
+@adminUserToken= {{adminUser.response.body.token}}
+
+
+###
+
+# Get all users from admin account
+GET {{base_url}}
+Authorization: BEARER {{adminUserToken}}
+
+

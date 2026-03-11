@@ -34,6 +34,7 @@ export const asyncHandler = (handler)=> async (request,response,next)=>{
                     path: request.originalUrl, 
                     url: `${request.host}${request.originalUrl}`, 
                     host:request.host, 
+                    headers:request.headers,
                     method:request.method, ...request.params, 
                         body:request.body, query:request.query }
 

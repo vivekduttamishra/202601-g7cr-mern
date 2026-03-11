@@ -1,3 +1,4 @@
+import { InvalidIdError } from '../../utils/exceptions.js'
 import {User} from './user.model.js'
 
 export class MongooseUserRepository{
@@ -9,7 +10,11 @@ export class MongooseUserRepository{
     }
 
     async getUserByEmail(email){
-        return await User.findOne({email})
+        let user = await User.findOne({email})
+        if(user)
+            return user.toObject()
+        else
+            throw new InvalidIdError(email, "No Such User")
     }
 
     async addUser(user){
