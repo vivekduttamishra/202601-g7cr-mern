@@ -1,0 +1,85 @@
+@base_url=http://localhost:4000/api/users
+@content_type=Content-Type: application/json
+
+@accept=Accept: application/json
+
+
+# Get All Users
+GET {{base_url}}
+{{accept}}
+
+###
+
+# Regiter Admin User
+POST {{base_url}}
+{{content_type}}
+{{accept}}
+
+{
+    "email":"vivek@conceptarchitect.in",
+    "password":"pass",
+    "name":"Vivek Dutta Mishra",
+    "roles":["admin","author"]
+}
+
+###
+
+# Register normal user
+POST {{base_url}}
+{{content_type}}
+{{accept}}
+
+{
+    "email":"sanjay@gmail.com",
+    "password":"pass",
+    "name":"Sanjay Mall"    
+}
+
+
+###
+
+# Register duplicate user
+POST {{base_url}}
+{{content_type}}
+{{accept}}
+
+{
+    "email":"sanjay@gmail.com",
+    "password":"pass",
+    "name":"Sanjay Mall"    
+}
+
+
+###
+
+# login normal user
+POST {{base_url}}/login
+{{content_type}}
+{{accept}}
+
+{
+    "email": "sanjay@gmail.com", 
+    "password":"pass"    
+}
+###
+
+# login invalid normal user
+POST {{base_url}}/login
+{{content_type}}
+{{accept}}
+
+{
+    "email": "sanjay@gmail.com", 
+    "password":"pass2"    
+}
+###
+
+# login admin user
+POST {{base_url}}/login
+{{content_type}}
+{{accept}}
+
+{
+    "email": "vivek@conceptarchitect.in", 
+    "password":"pass"    
+}

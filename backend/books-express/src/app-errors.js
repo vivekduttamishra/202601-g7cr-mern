@@ -38,6 +38,18 @@ appErrors
         }
 
     })
+    .addMessageHandler("User validation failed", error=>{
+        const status=400
+        const message= "Validation Failed"
+
+        return {
+            status,
+            body:{
+                message,
+                details: error
+            }
+        }
+    })
 
 
 

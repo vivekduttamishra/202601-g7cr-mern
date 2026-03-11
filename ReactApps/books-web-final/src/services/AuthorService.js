@@ -4,8 +4,18 @@ export class AuthorService{
 
     async getAllAuthors(){
         // http://localhost:4000/api/authors
-        const response = await http.get("/authors") 
-        return response.data
+        try{
+
+            const response = await http.get("/authors") 
+            //console.log('response.data',response.data);
+            
+            return response.data
+        }catch(err){
+            window.err=err
+            console.log('err',err);
+            
+            throw err;
+        }
 
     }
 

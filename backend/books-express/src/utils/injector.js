@@ -48,6 +48,7 @@ const add = (key, descriptor) => {
     descriptor.key=key
     catalog[key] = descriptor
     
+    return this;
     
 }
 

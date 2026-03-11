@@ -13,6 +13,8 @@ const AuthorListScreen = ({ id }) => {
         getAllAuthors()
     }, [])
 
+    console.log('authors',authors);
+    
 
     return (
 
@@ -29,8 +31,8 @@ const AuthorListScreen = ({ id }) => {
             <div className="Cards">
                 {
                     authors.map(a => (
-                        <div className='AuthorCard' key={authors.id}>
-                            <Link to={`/authors/${authors.id}`}>{authors.name}</Link>
+                        <div className='AuthorCard' key={a.id}>
+                            <Link to={`/authors/${a.id}`}>{a.name}</Link>
                         </div>
                     ))
                 }

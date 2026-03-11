@@ -8,7 +8,13 @@ const authorService = injector.get("authorService")
 
 
 
-export const getAllAuthors = asyncHandler(() => authorService.getAllAuthors())
+export const getAllAuthors = asyncHandler(async() =>{
+
+        let authors=await   authorService.getAllAuthors()
+        console.log('authors',authors);
+        return authors
+        
+})
 
 export const getAuthorById = asyncHandler(({ id }) => authorService.getAuthorById(id))
 
