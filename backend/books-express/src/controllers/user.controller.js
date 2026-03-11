@@ -13,7 +13,7 @@ export const getAllUsers= asyncHandler(async ({request})=>{
     
     let tokenString = request.headers.authorization
     if(!tokenString)
-        throw new AuthenticationError()
+        throw new AuthenticationError("Token Not found")
 
     tokenString=tokenString.replace('BEARER ','')
     let data;
@@ -21,11 +21,11 @@ export const getAllUsers= asyncHandler(async ({request})=>{
         data = await jwt.verify(tokenString,secret)
 
     }catch(error){
-        throw new AuthenticationError("Unauthorized")
+        throw new AuthenticationError("Not Authenticated", null, error)
     }
     
     if(!data.roles.includes("admin"))
-        throw new AuthenticationError(["admin"],"UnAuthorized")
+        throw new AuthenticationError("UnAuthorized", ["admin"])
 
 
     //only admin should get this
@@ -45,7 +45,7 @@ export const login=asyncHandler(async ({body,host})=>{
         issuer: 'http://localhost:4000',        
     }
 
-    const token = await jwt.sign(data,secret,{expiresIn:60*15}) //token expires in 5 min.
+    const token = await jwt.sign(data,secret,{expiresIn:60*2}) //token expires in 2 min.
 
     const u={
         name:user.name, 
@@ -68,7 +68,7 @@ export const currentUser = asyncHandler(async({request})=>{
 
     let tokenString = request.headers.authorization
     if(!tokenString)
-        throw new AuthenticationError(null,'Authorization Token Not found')
+        throw new AuthenticationError('Token Not found')
 
     tokenString=tokenString.replace('BEARER ','')
 
@@ -78,7 +78,7 @@ export const currentUser = asyncHandler(async({request})=>{
     }catch(error){
         console.log('error',error);
         
-        throw new AuthenticationError(null, error.message)
+        throw new AuthenticationError('Not Authenticated', null, error)
     }
 
 

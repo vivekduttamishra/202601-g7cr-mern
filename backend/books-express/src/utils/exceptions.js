@@ -29,10 +29,15 @@ export class ValidationError extends Error{
 }
 
 export class AuthenticationError extends Error{
-    constructor(requiredRoles, message){
+    constructor(message, requiredRoles,error){
         
-        super(requiredRoles?.length ? "UnAuthorized" : "UnAuthenticated")
+        super(message)
         this.requiredRoles
+        this.info={
+            message:this.message,
+            requiredRoles,
+            details:error?.message
+        }
     }
 }
 

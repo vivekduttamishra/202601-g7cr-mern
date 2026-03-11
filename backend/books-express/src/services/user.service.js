@@ -38,7 +38,7 @@ export class UserService {
             }
 
         } catch (error) {
-            throw new AuthenticationError()
+            throw new AuthenticationError("Invalid Credentials")
         }
 
     }
