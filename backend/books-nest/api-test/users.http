@@ -1,0 +1,76 @@
+@base_url=http://localhost:4000/api/users
+
+@content_type=Content-Type: application/json
+
+@accept=Accept: application/json
+
+@password="P@ssw0rd"
+
+
+# Get All Users
+GET {{base_url}}
+
+###
+
+# Add New User
+POST {{base_url}}
+{{accept}}
+{{content_type}}
+
+{
+    "email":"prabhat@gmail.com",
+    "password": "password",
+    "name":"Prabhat",
+    "roles":["reviewer","librarian"]
+}
+
+###
+
+# Try Ading Duplication User
+
+POST {{base_url}}
+{{accept}}
+{{content_type}}
+
+{
+    "email":"prabhat@gmail.com",
+    "password": "password",
+    "name":"Prabhat",
+    "roles":["reviewer","librarian"]
+}
+
+###
+
+# Login with invalid user name
+
+POST {{base_url}}/login
+{{content_type}}
+{{accept}}
+
+{"email":"invalid@gmail.com","password":"password"}
+###
+
+# Login with invalid password
+
+POST {{base_url}}/login
+{{content_type}}
+{{accept}}
+
+{"email":"vivek@cocneptarchitect.in","password":"wrong-password"}
+
+
+###
+
+# Login valid credential
+
+POST {{base_url}}/login
+{{content_type}}
+{{accept}}
+
+{"email":"vivek@conceptarchitect.in","password":"P@ssw0rd"}
+
+
+###
+
+
+

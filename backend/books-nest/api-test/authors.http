@@ -1,0 +1,65 @@
+@base_url=http://localhost:4000
+@authors_url={{base_url}}/api/authors
+
+@content_type=Content-Type: application/json
+
+@accept=Accept: application/json
+
+
+# Get / route
+GET {{base_url}}
+
+###
+
+# Get all authors
+GET {{authors_url}}
+api-key: xyz
+
+###
+
+# Get author by id
+
+GET {{authors_url}}/vivek-dutta-mishra
+
+###
+
+# Get author with invalid id
+GET {{authors_url}}/invalid-author-id
+
+
+###
+# Try Creating Invalid Author
+POST {{authors_url}}
+{{content_type}}
+{{accept}}
+
+{
+    "name":"Vivek Dutta Mishra",
+    "tags":["one","two","three","four","five","six"]
+}
+
+
+###
+
+# Create New Author
+# @name createAuthor
+POST {{authors_url}}
+{{content_type}}
+{{accept}}
+
+{
+    "_id":"ravindra-nath-tagore",
+    "name":"Ravindra Nath Tagore",
+    "biography":"Nobel prize winner author of the antional anthem of two countries",
+    "photo": "ravindra-nath-tagore.jpg",
+    "tags": ["author","poet","noble-prize"]
+}
+
+###
+
+@authorId= {{createAuthor.response.body._id}}
+
+###
+
+# Get newly created author
+GET {{authors_url}}/{{authorId}}
