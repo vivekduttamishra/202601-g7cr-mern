@@ -29,11 +29,11 @@ const add = (key, descriptor) => {
             descriptor={...defaults, factory:descriptor}
         }
     } else if( typeof descriptor !== 'object'){
-        console.log(`received`, key, descriptor)
+   //     console.log(`received`, key, descriptor)
         descriptor={...defaults, instance:descriptor}
     }
 
-    console.log('catalog',catalog);
+   // console.log('catalog',catalog);
     
 
     if(!(descriptor.instance!==undefined || descriptor.factory || descriptor.type))
@@ -79,7 +79,7 @@ const createInstance = (descriptor,context) => {
     }
 
     let instance = null
-    console.log('creating from ', descriptor.key)
+  //  console.log('creating from ', descriptor.key)
     if(descriptor.type){
         //console.log('constructor called')
         instance= new descriptor.type(...args) 

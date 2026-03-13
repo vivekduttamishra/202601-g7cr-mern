@@ -30,9 +30,9 @@ export class MongooseAuthorRepository{
     }
 
     async remove(id){
-        console.log('removing ', id)
+       // console.log('removing ', id)
        let result =  await Author.findByIdAndDelete(id)
-       console.log('remove result',result)
+     //  console.log('remove result',result)
     }
 
     async update(id, author){

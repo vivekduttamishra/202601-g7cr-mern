@@ -18,7 +18,7 @@ export class UserService {
 
     async register(user) {
         //user.roles=[]; //use this in production. for now I am letting it
-        console.log('user.password',user.password);
+       // console.log('user.password',user.password);
         
         user.password = await bcrypt.hash(user.password, 10)
         user = await this.userRepository.addUser(user)

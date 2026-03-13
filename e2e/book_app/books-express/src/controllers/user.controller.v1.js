@@ -52,8 +52,8 @@ export const login=asyncHandler(async ({body,host})=>{
         photo:user.photo, 
         roles:user.roles
     }
-    console.log('user',user);
-    console.log('u',u);
+    // console.log('user',user);
+    // console.log('u',u);
     
     
 
@@ -76,7 +76,7 @@ export const currentUser = asyncHandler(async({request})=>{
         let data = await jwt.verify(tokenString,secret)
         return {data}
     }catch(error){
-        console.log('error',error);
+       // console.log('error',error);
         
         throw new AuthenticationError('Not Authenticated', null, error)
     }

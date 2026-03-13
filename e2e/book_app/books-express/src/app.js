@@ -5,7 +5,7 @@ import userRoute from './routes/user.route.js'
 import appErrors from './app-errors.js'
 import { parseJwtToken } from './utils/jwt.js'
 import cors from 'cors'
-import { spa } from './utils/http.js'
+import { asyncHandler, spa } from './utils/http.js'
 
 const app = express()
 
@@ -26,9 +26,9 @@ app.use(cors())
 
 app.use((request,response,next)=>{
 
-    console.log('request.method',request.method);
-    console.log('request.originalUrl',request.originalUrl)
-    console.log('request.body',request.body);
+    // console.log('request.method',request.method);
+    // console.log('request.originalUrl',request.originalUrl)
+    // console.log('request.body',request.body);
     next()
       
     
@@ -36,7 +36,13 @@ app.use((request,response,next)=>{
 
 app.use(parseJwtToken)
 
-//configure your routes here
+app.get("/pid",asyncHandler(()=>({pid:process.pid})))
+app.get('/kill',asyncHandler(()=>{
+    let pid = process.pid
+    process.exit(1)
+}))
+
+//configure your routes here 
 app.use("/api", authorRoute)
 
 app.use("/api", userRoute)

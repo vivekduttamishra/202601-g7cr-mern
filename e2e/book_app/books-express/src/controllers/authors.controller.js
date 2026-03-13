@@ -16,7 +16,7 @@ export const getAllAuthors = asyncHandler(async({host}) =>{
                 ...a,
                 photo: a.photo?.startsWith('http')?a.photo: `http://${host}/authors/${a.photo}`        
         }))
-        console.log('authors',authors);
+       // console.log('authors',authors);
         return authors
         
 })

@@ -29,21 +29,21 @@ const _get = (Component) => {
     
 
     let dependencyNames = findDependencyList(Component) //["a","b"]
-    console.log('finding dependencies for ',Component, dependencyNames)
+    //console.log('finding dependencies for ',Component, dependencyNames)
 
     if(dependencyNames.length===0){
-        console.log('creating no-dep component',Component)
+      //  console.log('creating no-dep component',Component)
         return new Component();
     }
     let args=[]
 
-    console.log('finding dependencies', dependencyNames)
+   // console.log('finding dependencies', dependencyNames)
     for(let dependencyName of dependencyNames){
         let dependency= get(dependencyName)
         args.push(dependency)
     }
 
-    console.log('creating ',Component, 'using', args)
+ //   console.log('creating ',Component, 'using', args)
     return new Component(...args);
 
 
@@ -54,7 +54,7 @@ const get = (key) => {
     //create and return an object of given key type
     
     let Component = catalog[key]
-    console.log('finding key ', key, Component)
+   // console.log('finding key ', key, Component)
 
     if(!Component)
         throw new Error(`No Dependnecy Found for Key: ${key}`)
