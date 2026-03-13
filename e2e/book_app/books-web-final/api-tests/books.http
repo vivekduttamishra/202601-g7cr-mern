@@ -1,0 +1,10 @@
+
+
+
+# Get all Books
+GET http://localhost:6000/books
+
+###
+
+# Get all Author
+GET http://localhost:4000/authors
