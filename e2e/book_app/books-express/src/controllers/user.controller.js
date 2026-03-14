@@ -6,7 +6,8 @@ import {asyncHandler} from '../utils/http.js'
 import { AuthenticationError } from '../utils/exceptions.js'
 import { createToken } from '../utils/jwt.js'
 
-const userService = injector.get("userService")
+//const userService = injector.get("userService")
+const userService = injector.factory("userService")
 
 const secret = process.env.JWT_SECRET
 
@@ -18,7 +19,7 @@ export const getAllUsers= asyncHandler(async ({request})=>{
 export const login=asyncHandler(async ({body,host})=>{
     let {email,password}=body
     
-    let {user} = await userService.login(email,password)
+    let {user} = await userService().login(email,password)
 
     const data={
         subject: user.email,
@@ -41,5 +42,5 @@ export const currentUser = asyncHandler(async({user})=>{
 })
 
 
-export const register = asyncHandler(async ({body})=>await userService.register(body))
+export const register = asyncHandler(async ({body})=>await userService().register(body))
 

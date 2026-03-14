@@ -16,9 +16,6 @@ export const createToken=async(data,option={expiresIn:'7d'})=>{
     },secret,option)
 }
 
-
-
-
 export const parseJwtToken=async(request,response,next)=>{
     let tokenString=request.headers.authorization
     if(!tokenString){
@@ -26,7 +23,11 @@ export const parseJwtToken=async(request,response,next)=>{
     } else{
         tokenString=tokenString.replace('BEARER ','')
         try{
+            //console.log('token recieved',tokenString);
+            
             let user = await jwt.verify(tokenString,secret)
+           // console.log('user',user);
+            
             request.user=user
         }catch(ex){
             request.tokenError=new AuthenticationError("Invalid Token",null,ex)

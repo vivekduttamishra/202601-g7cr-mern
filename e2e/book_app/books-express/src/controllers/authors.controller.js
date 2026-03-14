@@ -4,13 +4,15 @@ import injector from '../utils/injector.js'
 import { asyncHandler, ResponseContent } from '../utils/http.js'
 
 //we get authorService with all its dependencies
-const authorService = injector.get("authorService")
+//const authorService = injector.get("authorService")
+
+const authorService= injector.factory("authorService")
 
 
 
-export const getAllAuthors = asyncHandler(async({host}) =>{
+export const getAllAuthors = async({host}) =>{
 
-        let authors=await   authorService.getAllAuthors()
+        let authors=await   authorService().getAllAuthors()
 
         authors=authors.map(a=>({
                 ...a,
@@ -19,27 +21,29 @@ export const getAllAuthors = asyncHandler(async({host}) =>{
        // console.log('authors',authors);
         return authors
         
-})
+}
 
-export const getAuthorById = asyncHandler(async({ id,host }) => {
-       const author= authorService.getAuthorById(id)
+export const getAuthorById = async({ id,host }) => {
+       const author=await authorService().getAuthorById(id)
        author.photo=author.photo?.startsWith('http')?author.photo: `http://${host}/authors/${author.photo}`
        return author;
-})
+}
 
-export const addAuthor = asyncHandler(async ({ body, url }) => {
-
-        let author = await authorService.addAuthor(body)
-
+export const addAuthor = async ({ body, url }) => {
+        console.log('body',body);
+        console.log('url',url);
+        
+        let author = await authorService().addAuthor(body)
+        
         return new ResponseContent(author, {
                 location: `${url}/${author.id}`
         })
 
-})
+}
 
-export const deleteAuthor=asyncHandler(({id})=> authorService.removeAuthor(id))
+export const deleteAuthor=({id})=> authorService().removeAuthor(id)
 
-export const updateAuthor=asyncHandler(({id,body})=> authorService.updateAuthor(id,body))
+export const updateAuthor=({id,body})=> authorService().updateAuthor(id,body)
 
 
 

@@ -1,9 +1,9 @@
 import express from 'express'
+import { parseJwtToken } from './utils/jwt.js'
 
 import authorRoute from './routes/authors.route.js'
 import userRoute from './routes/user.route.js'
 import appErrors from './app-errors.js'
-import { parseJwtToken } from './utils/jwt.js'
 import cors from 'cors'
 import { asyncHandler, spa } from './utils/http.js'
 
